@@ -1,0 +1,64 @@
+<style>
+    th.th_border { border-bottom: 4px solid #ccc !important; }
+    #contenedor_{tableid} label { font-weight: normal; margin-bottom: 3em !important; }
+</style>
+
+<div class="panel panel-default table-responsive">
+  <div class="panel-heading text-right">
+    <p class="col-md-10 text-left">{head}</p>
+    
+    &nbsp;
+    <a href="{action}/agregar" title="Agregar nuevo"><i class="fa fa-edit"></i> {addnew}</a>
+    &nbsp;
+  
+  </div>
+  
+    <div class="panel-body table-responsive" id="contenedor_{tableid}">
+      <table id="{tableid}" class="display hover stripe">
+        <thead>
+          <tr>
+              <!--tdtitle--><th class="th_border">{tdtitle}</th><!--tdtitle-->
+              <!--thver--><th class="th_border">&nbsp;</th><!--thver-->
+              <!--theditar--><th class="th_border">&nbsp;</th><!--theditar-->
+              <!--theliminar--><th class="th_border">&nbsp;</th><!--theliminar-->
+          </tr>
+        </thead>
+        <tbody>
+          <!--listado-->
+          <tr>
+              <!--tdvalue--><td>{tdvalue}</td><!--tdvalue-->
+              <!--ver--><td><a href="{action}/ver/{id}" title="Ver/Descargar"><i 
+                class="fa fa-eye"></i></a></td><!--ver-->
+              <!--editar--><td><a href="{action}/editar/{id}" title="Editar"><i 
+                class="fa fa-edit"></i></a></td><!--editar-->
+              <!--eliminar--><td><a href="#" onclick="confirmar({id})"
+                title="eliminar"><i class="fa fa-trash-o"></i></a></td><!--eliminar-->
+          </tr>
+          <!--listado-->
+          
+        </tbody>
+      </table>
+    </div>
+  
+  </div>
+
+<script type="text/javascript" charset="utf-8">
+	$(document).ready(function() {
+		$('#{tableid}').dataTable({
+		    language: {
+                url: '{lang}'
+            },
+            "search": { 
+                "search": "{filter}" 
+            },
+            "order": [{colno}, "{order}"],
+            "pageLength": {length}
+		});
+	} );
+  function confirmar(id) {
+      pregunta = "¿Está seguro de eliminar el registro id:" + id + "\"?";
+      if(confirm(pregunta)) {
+        location.href='{action}/eliminar/' + id;
+      }
+  }
+</script>

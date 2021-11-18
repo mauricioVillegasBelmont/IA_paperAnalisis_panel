@@ -1,0 +1,5 @@
+SITE_VARIABLE = "test lorem"
+HEAD_IMPORTS = ""
+FOOTER_IMPORTS = ""
+TM_HEAD =false ;Para importar analitycs y/o tag manager
+TM_BODY = false ;Para importar tag manager

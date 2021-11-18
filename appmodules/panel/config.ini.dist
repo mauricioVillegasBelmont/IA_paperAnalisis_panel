@@ -1,0 +1,59 @@
+PNL_TITLE = "Panel Sitio"
+PNL_COPYRIGHT_TXT = "develop by PymEngine"
+
+USR_TITLE_ADD = "Agregar Usuario"
+USR_TITLE_EDIT = "Editar Usuario"
+USR_TITLE_LIST = "Usuarios"
+USR_ACTION_ADD = "Agregar"
+USR_ACTION_EDIT = "Editar"
+USR_BACK_TO_LIST = "Regresar al listado"
+
+USR_MSGERROR_TITLE = "Se han producido algunos errores"
+USR_MSGERROR_UNAME = "
+    El nombre de usuario ya existe o NO es un nombre de usuario válido
+    (mínimo 6 caracteres; espacios en blanco no computan)
+"
+USR_MSGERROR_PASS = "
+    Contraseña incorrecta. Mínimo 6 caracteres
+"
+
+USR_LABEL_NAME = "Nombre"
+USR_LABEL_LASTNAME = "Apeido"
+USR_LABEL_USER = "Usuario"
+USR_LABEL_EMAIL = "Email"
+USR_LABEL_PASSWORD = "Contraseña"
+USR_BTN_PASSWORD = "Generar clave"
+USR_LABEL_ACCESSLEVEL = "Nivel de Acceso"
+USR_BTN_SAVE = "Guardar usuario"
+
+USR_UNAME_INSTRUCTIONS = "Mínimo: 6 caracteres (espacios en blanco no son computables)"
+USR_LEVEL_INSTRUCTIONS = "Número entre 1 y 99"
+
+USR_CUSTOM_LEVEL = "Otro"
+
+;;;;;;;CONTROLADOR ACTIVIDAD;;;;;;;;;
+ACT_TITLE_ADD = "Agregar Actividad"
+ACT_TITLE_EDIT = "Editar Actividad"
+ACT_TITLE_LIST = "Actividades"
+ACT_ACTION_ADD = "Agregar"
+ACT_ACTION_EDIT = "Editar"
+ACT_BACK_TO_LIST = "Regresar al listado"
+ACT_LABEL_NAME = "Nombre"
+ACT_LABEL_CREATED = "Fecha de creacion"
+ACT_LABEL_TYPE = "Tipo de actividad"
+ACT_LABEL_ACTIVE = "Poner online"
+ACT_BTN_SAVE = "Guardar actividad"
+
+[COLLECTOR_VIEWER]
+USR_FILTER = ""
+USR_ORDERBYCOLUMN = 1  ; 0: ID, 1: Name, 2: Level, 3: Admin
+USR_ORDERDIRECTION = "asc"
+USR_LENGTH = 25
+USR_LINK_ADDNEW = "Agregar nuevo usuario"
+USR_TABLE_TITLE = "Usuarios en orden alfabético"
+ACT_FILTER = ""
+ACT_ORDERBYCOLUMN = 1  ; 0: ID, 1: Name, 2: Level, 3: Admin
+ACT_ORDERDIRECTION = "asc"
+ACT_LENGTH = 25
+ACT_LINK_ADDNEW = "Agregar nueva actividad"
+ACT_TABLE_TITLE = "Actividad por fecha"

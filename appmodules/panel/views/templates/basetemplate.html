@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta name="robots" content="noindex" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{PNL_TITLE}</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.4/css/jquery.dataTables.min.css">
+    <style>body { padding-top: 20px; } .starter-template { padding: 40px 15px; }</style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
+    {HEAD_IMPORTS}
+  </head>
+  <body>
+
+  <!--cabecera-->
+  <nav class="navbar navbar-inverse navbar-fixed-top" id="euronavtop">
+      <div class="container">
+
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+            data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/dashboard">{APP_NAME}</a>
+        </div>
+
+        <!--login-->
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <!--MENU-ITEM--><li><a href="{href}"><i class="fa {icon}"></i> {anchor}</a></li><!--MENU-ITEM-->
+          </ul>
+        </div>
+        <!--/login-->
+
+      </div>
+    </nav>
+  <!--cabecera-->
+
+  <div class="container">
+    <div class="starter-template">
+
+      <div class="row text-right">
+        <!--nologin--><a href="/login"><i class="fa fa-sign-in"></i> Entrar</a><!--/nologin-->
+        <!--login-->
+        <i class="fa fa-user"></i> <b>{username}</b>{level} |
+        <a href="/logout">Salir <i class="fa fa-sign-out"></i></a>
+        <!--/login-->
+      </div>
+
+      <div class="page-header">
+        <h1>{PNL_TITLE}</h1>
+      </div>
+
+      {CONTENIDO}
+
+      <p class="col-md-12">&nbsp;<br>&nbsp;</p>
+    </div>
+  </div>
+  <div class="container panel-footer text-center" id="eurofooter">
+    <footer>
+      {PNL_COPYRIGHT_TXT}
+    </footer>
+  </div>
+  {FOOTER_IMPORTS}
+  </body>
+</html>

@@ -1,0 +1,128 @@
+<script language="javascript" type="text/javascript">
+
+function habilitar(field) {
+    if(document.getElementById('level').selectedIndex == 3) {
+        document.getElementById(field).disabled = false;
+        document.getElementById(field).focus();
+    } else {
+        document.getElementById(field).value = '';
+        document.getElementById(field).disabled = true;
+    }
+    
+}
+
+
+function generar_pwd(field) {
+    var raritos = ["@", "#", "$", "-", "_"];
+    var minusculas = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k',
+        'm', 'n', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+    var mayusculas = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K',
+        'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+    var numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+
+    clave = get_random_char(minusculas, 6);
+    clave += get_random_char(raritos, 1);
+    clave += get_random_char(mayusculas, 3);
+    clave += get_random_char(numeros, 2);
+
+    document.getElementById(field).readOnly = true;
+    document.getElementById(field).value = clave;
+    document.getElementById('pwd_generada').innerHTML = clave;
+}
+
+
+function get_random_char(stack, cantidad) {
+    choice = '';
+    for(i=0; i<cantidad; i++) {
+        indice = Math.floor((Math.random() * (stack.length - 1)) + 1);
+        choice += stack[indice];
+    }
+    return choice;
+}
+
+</script>
+<form method="POST" action="/panel/user/guardar" class="col-md-offset-2 col-md-8">
+  <input type="hidden" name="user_id" value="{user_id}">
+
+
+  <div class="alert alert-danger alert-dismissible" role="alert"
+    style="display: {errorstyle};">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span 
+      aria-hidden="true">&times;</span></button>
+    <strong>{USR_MSGERROR_TITLE}</strong><br>
+    {msgerror}
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading text-right">
+      <a href="/panel/user/listar"><i class="fa fa-reply"></i> {USR_BACK_TO_LIST}</a>
+    </div>
+    <div class="panel-body">
+
+      <div class="form-group col-md-offset-2 col-md-6 {usererror}">
+        <label class="control-label" for="name">{USR_LABEL_NAME}:</label>
+        <input type="text" name="name" id="name" class="form-control" value="{name}" />
+      </div>
+
+      <div class="form-group col-md-offset-2 col-md-6 {usererror}">
+        <label class="control-label" for="lastname">{USR_LABEL_LASTNAME}:</label>
+        <input type="text" name="lastname" id="lastname" class="form-control" value="{lastname}" />
+      </div>
+
+      <div class="form-group col-md-offset-2 col-md-6 {usererror}">
+        <label class="control-label" for="user">{USR_LABEL_USER}:</label>
+        <input type="text" name="user" id="user" class="form-control" value="{user}" />
+      </div>
+
+      <div class="form-group col-md-offset-2 col-md-6 {usererror}">
+        <label class="control-label" for="email">{USR_LABEL_EMAIL}:</label>
+        <input type="text" name="email" id="email" class="form-control" value="{email}" />
+      </div>
+
+      <div class="form-group col-md-offset-2 col-md-4 {pwderror}">
+        <label class="control-label" for="passwd">{USR_LABEL_PASSWORD}:</label>
+        <input type="password" name="pwd" id="passwd" class="form-control">
+      </div>
+      
+      <div class="form-group col-md-6">
+        <label for="">&nbsp;</label><br>
+        <button type="button" class="btn btn-default" 
+          onclick="generar_pwd('passwd');">{USR_BTN_PASSWORD}</button>
+        <small id="pwd_generada"></small>
+          <br>
+      </div>
+      <div class="col-md-offset-2 col-md-10">
+        <span class="help-block">{USR_UNAME_INSTRUCTIONS}</span><br>&nbsp;
+      </div>
+
+      <div class="form-group col-md-offset-2 col-md-4 {levelerror}">
+        <label for="level">{USR_LABEL_ACCESSLEVEL}:</label>
+        <select name="level" id="level" class="form-control" onchange="habilitar('otro');">
+            <option value=1{opt1}>1 (admin)</option>
+            <option value=2{opt2}>2 (editor)</option>
+            <option value=3{opt3}>3 (user)</option>
+            <option value=0{opt0}>{USR_CUSTOM_LEVEL}...</option>
+        </select>
+      </div>
+
+      <div class="form-group col-md-2">
+        <label for="otro">&nbsp;</label>
+        <input type="text" name="otro" id="otro" class="form-control" {disabled}
+          maxlength="2" value="{level}">
+      </div>
+      
+      <div class="col-md-4"><br>
+        <small class="help-block">{USR_LEVEL_INSTRUCTIONS}</small>
+      </div>
+
+      <div class="col-md-offset-2 col-md-10">
+        <br>&nbsp;
+      </div>
+
+      <div class="form-group col-md-offset-2 col-md-10">
+      <button type="submit" class="btn btn-primary">{USR_BTN_SAVE}</button>
+      </div>
+
+    </div>
+  </div>
+</form>

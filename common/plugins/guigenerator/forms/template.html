@@ -1,0 +1,253 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>WebFormPro Template</title>
+    <style type="text/css">
+    body {
+        font-family: sans-serif;
+        font-size: 12px;
+        width: 70%;
+        margin: 3em auto;
+    }
+    
+    form {
+        display: table;
+        width: 100%;
+        margin: 0 auto;
+        background: #f3f3f3;
+        border-radius: 0 0 10px 10px;
+        padding: 10px;
+        border-bottom: 18px solid #09c;
+    }
+    
+    div.instructions {
+        width: 100%;
+        margin: 0 auto;
+        background: #f3f3f3;
+        padding: 10px;
+        font-size: 16px;
+        color: #333;
+    }
+    
+    div.{
+        display: table-row;
+    }
+    
+    label.td, span.{
+        display: table-cell;
+        width: 27%;
+        text-align: right;
+        padding: 0.5em;
+        font-weight: bold;
+        color: #09c;
+    }
+    
+    div.{
+        display: table-cell;
+    }
+    
+    .top { vertical-align: top; }
+    textarea {
+        width: 74%;
+        height: 8em;
+    }
+    
+    input, textarea, select {
+        font-family: sans-serif;
+        font-size: 1em;
+        color: #444;
+    }
+    
+    .plain {
+        border: none;
+        cursor: pointer;
+    }
+    
+    a.linkform {
+        color: navy;
+        text-decoration: none;
+    }
+    
+    a.linkform:hover {
+        color: navy;
+        text-decoration: underline;
+    }
+    
+    h3.form {
+        width: 100%;
+        margin: 0 auto;
+        background: #09c;
+        border-radius: 10px 10px 0 0;
+        padding: 10px;
+        color: #fff;
+    }
+    </style>
+</head>
+
+<body>
+    <!--TITLE--><h3 class="form"{extras}>{label}</h3><!--TITLE-->
+
+    <!--INSTRUCTIONS-->
+    <div class="instructions"{extras}>
+        <p>{label}</p>
+    </div>
+    <!--INSTRUCTIONS-->
+
+    <!--ALERT-->
+    <div class="alert alert-danger" id="EuWFP_alert">Por favor, revise los 
+        errores y vuelva a intentarlo</div>
+    <!--ALERT-->
+
+    <!--FORM-->
+    <form id="{formid}" method="{method}" action="{action}"
+        enctype="multipart/form-data">
+    <!--FORM-->
+
+        <!--NAVBARCONTAINER-->
+        <div class="col-md-12">
+            <label class="td">&nbsp;</label>
+            <!--NAVBAR-->
+            <a href="{href}" class="linkformnav">{anchor}</a><!--NAVBAR-->
+        </div>
+        <!--NAVBARCONTAINER-->
+
+        <!--HIDDEN-->
+        <input type="hidden" name="{name}" id="{id}" value="{value}">
+        <!--HIDDEN-->
+
+        <!--TEXT-->
+        <div class="form-group" id="EuWFP_{name}">
+            <label for="{id}" class="control-label">{label}</label>
+            <input type="text" name="{name}" id="{id}" value="{value}" class="form-control"
+                placeholder="{placeholder}"{extras}> <span id="{name}_error"></span>
+        </div>
+        <!--TEXT-->
+
+        <!--PASSWORD-->
+        <div class="form-group" id="EuWFP_{name}">
+            <label for="{id}" class="control-label">{label}</label>
+            <input type="password" name="{name}" id="{id}" value="{value}" class="form-control"
+                placeholder="{placeholder}"{extras}> <span id="{name}_error"></span>
+        </div>
+        <!--PASSWORD-->
+
+        <!--EMAIL-->
+        <div class="form-group" id="EuWFP_{name}">
+            <label for="{id}" class="control-label">{label}</label>
+            <input type="email" name="{name}" id="{id}" value="{value}" class="form-control"
+                placeholder="user@example.org"{extras}> <span id="{name}_error"></span>
+        </div>
+        <!--EMAIL-->
+        
+        <!--URL-->
+        <div class="form-group" id="EuWFP_{name}">
+            <label for="{id}" class="control-label">{label}</label>
+            <input type="url" name="{name}" id="{id}" value="{value}" class="form-control"
+                placeholder="http://www.example.org"{extras}> <span id="{name}_error"></span>
+        </div>
+        <!--URL-->
+
+        <!--LINK-->
+        <div>
+            <a href="{value}" class="linkform"{extras}>{label}</a>
+        </div>
+        <!--LINK-->
+        
+        <!--OPTIONCONTAINER-->
+        <div class="form-group" id="EuWFP_{name}">
+            <label for="{id}" class="control-label">{label}</label>
+            <select name="{name}" id="{id}" class="form-control"{extras}>
+                <!--OPTION--><option value="{value}"{extras}>{text}</option>
+                <!--OPTION-->
+            </select> <span id="{name}_error"></span>
+        </div>
+        <!--OPTIONCONTAINER-->
+        
+        <!--FILE-->
+        <div class="form-group" id="EuWFP_{name}">
+            <label for="{id}" class="control-label">{label}</label>
+            <input type="file" name="{name}" id="{id}"{extras} class="form-control">
+            <span id="{name}_error"></span>
+        </div>
+        <!--FILE-->
+        
+        <!--RADIOCONTAINER-->
+        <div id="EuWFP_{name}">
+            <span class="control-label">{label}</span>
+            <div class="td">
+                <!--RADIO--><label class="labelcontainer">
+                    <input type="radio" name="{name}" value="{value}"{extras}> {text}</label>
+                <!--RADIO-->
+                <br><span id="{name}_error"></span>
+            </div>
+        </div>
+        <!--RADIOCONTAINER-->
+
+        <!--CHECKBOXCONTAINER-->
+        <div id="EuWFP_{name}">
+            <span class="control-label">{label}</span>
+            <div class="td">
+                <!--CHECKBOX--><label class="labelcontainer">
+                    <input type="checkbox" name="{name}[]" value="{value}"{extras}> {text}</label><br>
+                <!--CHECKBOX-->
+                <span id="{name}_error"></span>
+            </div>
+        </div>
+        <!--CHECKBOXCONTAINER-->
+        
+        <!--TEXTAREA-->
+        <div class="form-group" id="EuWFP_{name}">
+            <label for="{id}" class="control-label">{label}</label>
+            <textarea name="{name}" id="{id}" placeholder="{placeholder}"{extras}
+            class="form-control">{value}</textarea>
+            <br><span id="{name}_error"></span>
+        </div>
+        <!--TEXTAREA-->
+        
+        <!--FIELDSET-->
+        <fieldset><legend><h4>{value}</h4></legend>
+            {content}
+        </fieldset>
+        <!--FIELDSET-->
+        
+        <!--LAYER-->
+        <div class="col-md-{value}">
+            {content}
+        </div>
+        <!--LAYER-->
+        
+        <!--CAPTCHA-->
+        <div id="EuWFP_{name}">
+            <label for="{id}" class="control-label">{label}</label>
+            <span class="captcha"{extras}>{value}</span>
+            <input type="text" name="{name}" id="{id}" size="6"> <span id="{name}_error"></span>
+        </div>
+        <!--CAPTCHA-->
+        
+        <!--SUBMIT-->
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary" value="{value}"{extras}>{value}</button>
+        </div>
+        <!--SUBMIT-->
+    </form>
+
+    <!--ERROR-ZONE-->
+    <script>
+    var EuWFP_campos_error = {value};
+    var EuWFP_error_msg = "";
+    var EuWFP_error_msg_ini = "<b>{label}</b><br>";
+    for(var EuWFP_key in EuWFP_campos_error) {
+        document.getElementById('EuWFP_' + EuWFP_key).className = "form-group has-error";
+        EuWFP_error_msg += EuWFP_campos_error[EuWFP_key] + "<br>";
+        document.getElementById('EuWFP_alert').style.display = 'block';
+        document.getElementById('EuWFP_alert').innerHTML = EuWFP_error_msg_ini + EuWFP_error_msg;
+    }
+    if(EuWFP_error_msg == '') {
+        document.getElementById('EuWFP_alert').style.display = 'none';
+    }
+    </script>
+    <!--ERROR-ZONE-->
+
+</body>
+</html>

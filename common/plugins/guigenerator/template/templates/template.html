@@ -1,0 +1,415 @@
+<!--BLOCK-ONE-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="/static/sb-admin-v2/">
+    <title>{title}</title>
+
+    <!-- Core CSS - Include with every page -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+
+    <!-- dataTable CSS -->
+    <link href="css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+
+    <!-- SB Admin CSS - Include with every page -->
+    <link href="css/sb-admin.css" rel="stylesheet">
+    <link href="/static/gui-gen/gui-gen.css" rel="stylesheet">
+</head>
+
+<body>
+    <!--wrapper-->
+    <div id="wrapper">
+        <!--abstract-navbar-->
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0">
+            <a class="navbar-brand" href="/">{brand}</a>
+
+            <!--navbar-top-->
+            <ul class="nav navbar-top-links navbar-right">
+                <!--@navbar-top-items-->
+            <!--BLOCK-ONE-->
+
+                <!--DropDownMenu:top-->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-{icon} fa-fw"></i> {anchor} <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <!--@dropdown-menu-items-->
+                    </ul>
+                </li>
+                <!--DropDownMenu:top-->
+
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-picture-o fa-fw"></i> Example <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <!--dropdown-header-->
+                        <li class="dropdown-header">{header}</li>
+                        <!--dropdown-header-->
+
+                        <li><a href="#"><i class="fa fa-edit fa-fw"></i> Example</a></li>
+
+                        <!--dropdown-hr-->
+                        <li class="divider"></li>
+                        <!--dropdown-hr-->
+
+                        <li class="dropdown-header">Head Demo</li>
+                        <li><a href="#"><i class="fa fa-print fa-fw"></i> Other item
+                        <span class="badge">12</span></a></li>
+                        <li><a href="#"><i class="fa fa-random fa-fw"></i> Random
+                        <span class="badge"></span></a></li>
+                        <li class="disabled"><a href="#"><i class="fa fa-umbrella fa-fw"></i> Umbrella
+                        <span class="badge">0</span></a></li>
+                        
+                    </ul>
+                </li>
+
+                <!--MenuItem-->
+                <li class="{disabled}"><a href="{link}"><i class="fa fa-{icon} fa-fw"></i> {anchor}
+                <span class="badge">{bg}</span></a></li>
+                <!--MenuItem-->
+
+            <!--BLOCK-TWO-->
+            </ul>
+            <!--navbar-top-->
+
+            <!--navbar-side-->
+            <div class="navbar-default navbar-static-side" role="navigation">
+                <div class="sidebar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <!--@navbar-side-items-->
+                    <!--BLOCK-TWO-->
+
+                        <!--buscador-->
+                        <li class="sidebar-search">
+                            <form metehod="{method}" action="{action}" id="searcher_{id}"
+                                class="input-group custom-search-form">
+                                <input type="text" class="form-control" name="q" placeholder="{placeholder}">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button"
+                                        onclick="document.getElementById('searcher_{id}').submit();">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                            </form>
+                        </li>
+                        <!--buscador-->
+
+                        <!--DropDownMenu:side-->
+                        <li>
+                            <a href="#"><i class="fa fa-{icon} fa-fw"></i> {anchor}<i class="fa arrow"></i></a>
+                            <ul class="nav nav-second-level">
+                                <!--@dropdown-menu-items-->
+                            </ul>
+                        </li>
+                        <!--DropDownMenu:side-->
+
+                    <!--BLOCK-THREE-->
+                    </ul>
+                </div>
+            </div>
+            <!--navbar-side-->
+
+        </nav>
+        <!--/abstract-navbar-->
+
+        <!--page-wrapper-->
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">{section-title}<small> {section-subtitle}</small></h1>
+                <!--BLOCK-THREE-->
+
+                    <!--breadcrumb-->
+                    <ol class="breadcrumb">
+                        <!--link--><li><a href="{link}">{anchor}</a></li><!--link-->
+                        <!--active--><li class="active">{anchor}</li><!--active-->
+                    </ol>
+                    <!--breadcrumb-->
+
+                <!--BLOCK-FOUR-->
+                </div>
+            </div>
+        <!--BLOCK-FOUR-->
+            <!--@page-wrappe-elements-->
+
+            <!--datatable-->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-table fa-fw"></i> <strong>{tabla-title}</strong>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover" id="dataTables">
+                            <thead>
+                                <tr>
+                                    <!--tdtitle--><th>{tdtitle}</th><!--tdtitle-->
+                                    <!--thver--><th>&nbsp;</th><!--thver-->
+                                    <!--theditar--><th>&nbsp;</th><!--theditar-->
+                                    <!--theliminar--><th>&nbsp;</th><!--theliminar-->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!--listado-->
+                                <tr class="odd gradeX">
+                                    <!--tdvalue--><td>{tdvalue}</td><!--tdvalue-->
+                                    <!--ver--><td class="text-center"><a 
+                                        href="{action}/ver/{id}"><i class="fa fa-eye fa-lg"></i></a></td><!--ver-->
+                                    <!--editar--><td class="text-center"><a 
+                                        href="{action}/editar/{id}"><i 
+                                        class="fa fa-edit fa-lg"></i></a></td><!--editar-->
+                                    <!--eliminar--><td class="text-center"><a 
+                                        href="{action}/eliminar/{id}"><i 
+                                        class="fa fa-trash-o fa-lg"></i></a></td><!--eliminar-->
+                                </tr>
+                                <!--listado-->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!--datatable-->
+            
+            <!--form-->
+            <div class="panel panel-default">
+                <!--@form-title-->
+                <div class="panel-body">
+                    <!--@form-instructions-->
+                    <form class="form-horizontal" id="{formid}" method="{method}" action="{action}"         
+                      enctype="multipart/form-data">
+                        <!--@form-fields-->
+                    </form>
+                </div>
+            </div>
+            <!--form-->
+
+
+            <div class="panel panel-default">
+                <!--TITLE-->
+                <div class="panel-heading"{extras}>
+                    <i class="fa fa-edit fa-fw"></i> <strong>{label}</strong>
+                </div>
+                <!--TITLE-->
+
+                <div class="panel-body">
+                    <!--INSTRUCTIONS-->
+                    <div class="panel panel-default"{extras}>
+                        <div class="panel-body">{label}</div>
+                    </div>
+                    <!--INSTRUCTIONS-->
+
+                    <form class="form-horizontal" id="{formid}" method="post" 
+                        action="/" enctype="multipart/form-data">
+
+                        <!--HIDDEN-->
+                        <input type="hidden" name="{name}" id="{id}" value="{value}">
+                        <!--HIDDEN-->
+
+                        <!--TEXT-->
+                        <div class="form-group" id="{name}_group">
+                            <label for="{id}" class="control-label col-xs-3">{label}:</label>
+                            <div class="col-xs-5">
+                                <input type="text" name="{name}" id="{id}" value="{value}"
+                                    class="form-control" placeholder="{placeholder}"{extras}>
+                            </div>
+                            <div class="control-label col-xs-4 msg_error" id="{name}_error"></div>
+                        </div>
+                        <!--TEXT-->
+                        
+                        <!--PASSWORD-->
+                        <div class="form-group" id="{name}_group">
+                            <label for="{id}" class="control-label col-xs-3">{label}:</label>
+                            <div class="col-xs-5">
+                                <input type="password" name="{name}" id="{id}" value="{value}"
+                                    class="form-control" placeholder="{placeholder}"{extras}>
+                            </div>
+                            <div class="control-label col-xs-4 msg_error" id="{name}_error"></div>
+                        </div>
+                        <!--PASSWORD-->
+
+                        <!--EMAIL-->
+                        <div class="form-group" id="{name}_group">
+                            <label for="{id}" class="control-label col-xs-3">{label}:</label>
+                            <div class="col-xs-5">
+                                <input type="email" name="{name}" id="{id}" value="{value}"
+                                    class="form-control" placeholder="user@example.org"{extras}>
+                            </div>
+                            <div class="control-label col-xs-4 msg_error" id="{name}_error"></div>
+                        </div>
+                        <!--EMAIL-->
+
+                        <!--URL-->
+                        <div class="form-group" id="{name}_group">
+                            <label for="{id}" class="control-label col-xs-3">{label}:</label>
+                            <div class="col-xs-5">
+                                <input type="URL" name="{name}" id="{id}" value="{value}"
+                                    class="form-control" placeholder="http://www.example.org"{extras}>
+                            </div>
+                            <div class="control-label col-xs-4 msg_error" id="{name}_error"></div>
+                        </div>
+                        <!--URL-->
+
+                        <!--OPTIONCONTAINER-->
+                        <div class="form-group" id="{name}_group">
+                            <label for="{id}" class="control-label col-xs-3">{label}:</label>
+                            <div class="col-xs-5">
+                                <select name="{name}" id="{id}" class="form-control">
+                                    <!--OPTION--><option value="{value}"{extras}>{text}</option>
+                                    <!--OPTION-->
+                                </select>
+                            </div>
+                            <div class="control-label col-xs-4 msg_error" id="{name}_error"></div>
+                        </div>
+                        <!--OPTIONCONTAINER-->
+
+                        <!--FILE-->
+                        <div class="form-group" id="{name}_group">
+                            <label for="{id}" class="control-label col-xs-3">{label}:</label>
+                            <div class="col-xs-5">
+                                <input type="file" name="{name}" id="{id}"{extras}>
+                            </div>
+                            <div class="control-label col-xs-4 msg_error" id="{name}_error"></div>
+                        </div>
+                        <!--FILE-->
+
+                        <!--RADIOCONTAINER-->
+                        <div class="form-group" id="{name}_group">
+                            <label class="control-label col-xs-3">{label}:</label>
+                            <div class="col-xs-9">
+                                <!--RADIO--><label class="radio-inline"><input type="radio" name="{name}" 
+                                value="{value}"{extras}> {text}</label>
+                                <!--RADIO-->
+                                <br><div id="{name}_error" class="msg_error"></div>
+                            </div>
+                        </div>
+                        <!--RADIOCONTAINER-->
+
+                        <!--CHECKBOXCONTAINER-->
+                        <div class="form-group" id="{name}_group">
+                            <label class="control-label col-xs-3">{label}:</label>
+                            <div class="col-xs-5">
+                                <!--CHECKBOX-->
+                                <div class="checkbox">
+                                    <label class="no-bold">
+                                    <input type="checkbox" name="{name}[]" value="{value}"{extras}>
+                                    {text}</label>
+                                </div>
+                                <!--CHECKBOX-->
+                                <div id="{name}_error" class="msg_error"></div>
+                            </div>
+                        </div>
+                        <!--CHECKBOXCONTAINER-->
+
+                        <!--TEXTAREA-->
+                        <div class="form-group" id="{name}_group">
+                            <label class="control-label col-xs-3">{label}:</label>
+                            <div class="col-xs-5">
+                                <textarea name="{name}" id="{id}" class="form-control"
+                                placeholder="{placeholder}"{extras}>{value}</textarea>
+                                <div id="{name}_error" class="msg_error"></div>
+                            </div>
+                        </div>
+                        <!--TEXTAREA-->
+
+                        <!--CAPTCHA-->
+                        <div class="form-group" id="{name}_group">
+                            <label class="control-label col-xs-3">{label}:</label>
+                            <div class="col-xs-5"{extras}>{value}</div>
+                            <br>
+                            <div class="col-xs-2">
+                                <input type="text" name="{name}" id="{id}" size="6" class="form-control">
+                            </div>
+                            <div class="control-label col-xs-4 msg_error" id="{name}_error"></div>
+                        </div>
+                        <!--CAPTCHA-->
+
+                        <!--SUBMIT-->
+                        <div class="form-group">
+                            <label class="control-label col-xs-3">&nbsp;</label>
+                            <div class="col-xs-2"><button class="btn btn-primary" 
+                                type="submit" {extras}>{value}</button></div>
+                        </div>
+                        <!--SUBMIT-->
+
+                    </form>
+                </div>
+            </div>
+            
+            <!--ERROR-ZONE-->
+            <script>
+            var GUIGen_campos_error = {value};
+
+            for(var GUIGen_key in GUIGen_campos_error) {
+                GUIGen_formgroup = document.getElementById(GUIGen_key + "_group");
+                GUIGen_formgroup.className += " has-error";
+                GUIGen_error = document.getElementById(GUIGen_key + "_error");
+                GUIGen_error.innerHTML = '<i class="fa fa-exclamation-triangle"></i> ';
+                GUIGen_error.innerHTML += GUIGen_campos_error[GUIGen_key];
+                GUIGen_field = document.getElementsByName(GUIGen_key);
+
+                if(GUIGen_field.length == 1) {
+                    GUIGen_field[0].onkeyup = function() {
+                        GUIGen_g = document.getElementById(this.name + "_group");
+                        GUIGen_e = document.getElementById(this.name + "_error");
+                        if(this.value != '') {
+                            GUIGen_g.className = GUIGen_g.className.replace('has-error', 'has-success');
+                            GUIGen_e.innerHTML = GUIGen_e.innerHTML.replace('exclamation-triangle', 'check-square');
+                        } else {
+                            GUIGen_g.className = GUIGen_g.className.replace('has-success', 'has-error');
+                            GUIGen_e.innerHTML = GUIGen_e.innerHTML.replace('check-square', 'exclamation-triangle');
+                        }
+                    };
+                }
+            }
+            </script>
+            <!--ERROR-ZONE-->
+
+            <!--footer-->
+            <footer class="text-center">
+                <br><hr>
+                <strong>{copyright}</strong><br>
+                <small class="text-muted">
+                    Software creado con <a href="https://pymeweb.mx" target="_blank">Pyme Web</a> |
+                    Template: <a href="http://www." target="_blank">SB Admin 2</a> creado con
+                    <a href="http://www." target="_blank">Bootstrap</a> e iconografía de  
+                    <a href="http://www." target="_blank">Font Awesone</a>.<br>
+                    Efectos en tablas y menú: <a href="http://www." target="_blank">DataTables</a>
+                    y <a href="http://www." target="_blank">MetisMenu</a> (creados con 
+                    <a href="" target="">JQuery</a>)<br>&nbsp;
+                </small>
+            </footer>
+            <!--footer-->
+
+        <!--BLOCK-FIVE-->
+        </div>
+        <!--/page-wrapper-->
+    </div>
+    <!--/wrapper-->
+    <!-- Core Scripts - Include with every page -->
+    <script src="js/jquery-1.10.2.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+
+    <!-- DataTable JS -->
+    <script src="js/plugins/dataTables/jquery.dataTables.js"></script>
+    <script src="js/plugins/dataTables/dataTables.bootstrap.js"></script>
+
+    <!-- SB Admin Scripts - Include with every page -->
+    <script src="js/sb-admin.js"></script>
+
+    <!--@pagelevel-scripts-->
+<!--BLOCK-FIVE-->
+
+    <!--datatable-script-->
+    <script>$(document).ready(function() { $('#dataTables').dataTable(); });</script>
+    <!--datatable-script-->
+
+<!--BLOCK-SIX-->
+</body>
+</html>
+<!--BLOCK-SIX-->
+
