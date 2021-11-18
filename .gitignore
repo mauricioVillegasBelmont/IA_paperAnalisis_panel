@@ -1,10 +1,6 @@
-!.gitkeep
-!*/.gitkeep
 /nbproject/*
-!/writable
 /writable/*
 /common/libs/vendor/*
-!/site_media/uploads
 /site_media/uploads/*
 config.ini
 #CodeKit
