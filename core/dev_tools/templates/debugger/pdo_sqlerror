@@ -11,6 +11,7 @@
   Propiedades reales de la clase...... $clsvars_str
   Campos en la tabla.................. $fields_str
   Propiedades del objeto.............. $objvars_str
+  SQL Error........................... $extra
 
 [ANÁLISIS DE PROPIEDADES]
 

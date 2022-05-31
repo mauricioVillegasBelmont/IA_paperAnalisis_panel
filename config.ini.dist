@@ -64,8 +64,8 @@ HTTP_ERROR_EE1001 =   ; ruta física absoluta del archivo HTML para error EE1001
 
 [TEMPLATE]
 APP_NAME = '<i class="fa fa-cog"></i> <b>Pymeweb</b> engine' ; nombre/marca comercial de la aplicación
-DEFAULT_TITLE = "PymEngine"                        ; título por defecto
-COPYRIGHT_TXT = "©2021 Pymeweb"            ; leyenda de copyrigth en el pie del template
+DEFAULT_TITLE = "Sitio Web"                        ; título por defecto
+COPYRIGHT_TXT = "©2022 Pymeweb"            ; leyenda de copyrigth en el pie del template
 
 
 [SESSIONS]

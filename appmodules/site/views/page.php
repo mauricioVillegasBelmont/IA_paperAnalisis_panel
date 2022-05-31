@@ -24,12 +24,19 @@ class PageView {
         $GLOBALS['DICT']['ROBOTS'] ="<meta name=\"robots\" content=\"noindex\" />";
       }
       if(GOOGLE_ANALYTICS){
-        $file = APP_DIR . "appmodules/site/views/templates/google_analytics.html";
+        $file = APP_DIR . "appmodules/site/views/templates/scripts/google_analytics.html";
         $str = file_get_contents($file);
         $GLOBALS['DICT']['GOOGLE_ANALYTICS'] = $str;
       }
+      if(GOOGLE_TM){
+        $file = APP_DIR . "appmodules/site/views/templates/scripts/google_tm_head.html";
+        $str = file_get_contents($file);
+        $GLOBALS['DICT']['GOOGLE_TM_HEAD'] = $str;
+        $file = APP_DIR . "appmodules/site/views/templates/scripts/google_tm_body.html";
+        $str = file_get_contents($file);
+        $GLOBALS['DICT']['GOOGLE_TM_BODY'] = $str;
+      }
     }
-
 }
 
 ?>

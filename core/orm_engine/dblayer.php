@@ -37,7 +37,7 @@ class DBLayer {
         $query->execute();
 
         $errors = $query->errorInfo();
-        if(!is_null($errors[1])) DBLayerErrorHandler()->handle();
+        if(!is_null($errors[1])) DBLayerErrorHandler()->handle(EH_BOTH, $errors);
 
         $is_insert = (strpos(strtoupper($sql), 'INSERT') === 0);
         $is_select = (strpos(strtoupper($sql), 'SELECT') === 0);
@@ -108,7 +108,7 @@ class DBLayerErrorHandler extends ErrorHandler {
         exit();
     }
 
-    public function handle($mode=EH_BOTH) {
+    public function handle($mode=EH_BOTH, $errors="") {
         extract(self::get_tmp_vars());
         $data = array(
           "date"=>date("d/m/Y H:i:s"),
@@ -120,7 +120,8 @@ class DBLayerErrorHandler extends ErrorHandler {
           "objvars_str"=>DevToolsHelper::array_to_string($objvars),
           "model2table"=>$m2t_str,
           "object2table"=>$o2t_str,
-          "object2model"=>DevToolsHelper::get_diff_to_string($objvars, $clsvars)
+          "object2model"=>DevToolsHelper::get_diff_to_string($objvars, $clsvars),
+          "extra"=>$errors
         );
 
         $both = ($mode == EH_BOTH);
