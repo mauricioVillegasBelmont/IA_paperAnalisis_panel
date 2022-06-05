@@ -35,6 +35,9 @@ class PageView {
         $file = APP_DIR . "appmodules/site/views/templates/scripts/google_tm_body.html";
         $str = file_get_contents($file);
         $GLOBALS['DICT']['GOOGLE_TM_BODY'] = $str;
+      }else{
+        $GLOBALS['DICT']['GOOGLE_TM_HEAD'] = "";
+        $GLOBALS['DICT']['GOOGLE_TM_BODY'] = "";
       }
     }
 }
