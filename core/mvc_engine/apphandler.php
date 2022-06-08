@@ -83,6 +83,17 @@ class ApplicationHandler {
         if(file_exists($urls_file)) {
             eval(file_get_contents($urls_file));
             $resource = $_SERVER['REQUEST_URI'];
+            //FIX TRACK URL
+            if(defined('SECURITY_TRACK')) {
+                if(SECURITY_TRACK){
+                    $_track = explode("?", $resource);
+                    if(count($_track)>1){
+                        $resource = $_track[0];
+                        $_track = $_track[1];
+                    }
+                }
+            }
+            //END FIX TRACK URL
             foreach($urls as $regex=>$to_url) {
                 preg_match($regex, $resource, $matches);
                 if(isset($matches[0])) {

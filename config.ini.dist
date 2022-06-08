@@ -79,6 +79,7 @@ SECURITY_LAYER_STRICT_MODE = false    ; true para filtrar formularios con htmlen
 SECURITY_LAYER_SANITIZE_ARRAY = true  ; true para convertir a enteros los campos de selección múltiple
 SECURITY_LAYER_ENCRYPT_PASSWORD = true    ; false para no encriptar campos de contraseña ni filtrarlos
 SECURITY_LAYER_ENCRYPT_PASSWORD_HASH = md5 ; Algoritmo de cifrado a utilizar solo si ENCRYPT_PASSWORD es true
+SECURITY_TRACK = true ; Para habilitar codigos de trackeo como UTM
 
 
 [PLUGINS]
