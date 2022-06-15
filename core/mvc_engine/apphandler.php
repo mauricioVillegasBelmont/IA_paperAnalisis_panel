@@ -44,6 +44,8 @@ class ApplicationHandler {
         $srvuri = (!is_null($virtual_uri)) ? $virtual_uri : $real_uri;
         if(WEB_DIR != "/") {
             self::$uri = str_replace(WEB_DIR, "", $srvuri);
+            //fix webdir works
+            self::$uri = ltrim(self::$uri, '/');
         } else {
             self::$uri = substr($srvuri, 1);
         }
@@ -83,6 +85,8 @@ class ApplicationHandler {
         if(file_exists($urls_file)) {
             eval(file_get_contents($urls_file));
             $resource = $_SERVER['REQUEST_URI'];
+            //Fix webdir subcarpeta works
+            if(WEB_DIR != "/"){ $resource = str_replace(WEB_DIR, "/", $resource); }
             //FIX TRACK URL
             if(defined('SECURITY_TRACK')) {
                 if(SECURITY_TRACK){
