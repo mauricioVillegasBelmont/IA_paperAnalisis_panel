@@ -1,0 +1,20 @@
+body{
+  --fs-value:1rem;
+  font-size: 1rem;
+  @extend %overflow-scroll;
+}
+img{
+  user-select: none;
+  object-fit: cover;
+  object-position: center;
+  &.contain{
+    object-fit: contain;
+  }
+}
+img,svg,canvas{
+  @extend %display-block;
+  @extend %width-100;
+}
+hr{
+  border: 0;
+}
