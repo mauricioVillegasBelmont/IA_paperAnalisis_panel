@@ -174,4 +174,14 @@ class ToolsHelper {
 
       return $time;
     }
+
+  static function shuffle(&$a, $indexes){
+    $N = count($indexes);
+    while ($N--) {
+      $perm = rand(0, $N);
+      $swap = $a[$indexes[$N]];
+      $a[$indexes[$N]] = $a[$indexes[$perm]];
+      $a[$indexes[$perm]] = $swap;
+    }
+  }
 }

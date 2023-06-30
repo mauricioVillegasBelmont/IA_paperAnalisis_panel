@@ -1,5 +1,6 @@
+PANEL_ASSETS = '/site_media/panel'
 PNL_TITLE = "Panel Sitio"
-PNL_COPYRIGHT_TXT = "develop by PymEngine"
+PNL_COPYRIGHT_TXT = "develop by PymEngine | Copyright &copy; pymeweb.mx "
 
 USR_TITLE_ADD = "Agregar Usuario"
 USR_TITLE_EDIT = "Editar Usuario"

@@ -10,7 +10,7 @@ class UserView {
         $dict = $this->__set_dict($model, $tit, $user_exists, $badpwd);
         $this->__set_optleveldict($model->level, $dict);
 
-        $basetemplate = APP_DIR . "appmodules/panel/views/templates/basetemplate.html";
+        $basetemplate = $GLOBALS['BASE_TEMPLATE_PANEL'];
         $str = file_get_contents( APP_DIR . "appmodules/panel/views/templates/add_user.html");
         $html = Template($str)->render($dict);
         $GLOBALS['DICT']['PNL_TITLE'] = $this->__get_pnl_title($tit); //set title page
@@ -30,17 +30,18 @@ class UserView {
 
         $str = CollectorViewer($coleccion, 'panel', 'user', False, True, True, $options)->get_table();
 
-        $basetemplate = APP_DIR . "appmodules/panel/views/templates/basetemplate.html";
+        $basetemplate = $GLOBALS['BASE_TEMPLATE_PANEL'];
         $GLOBALS['DICT']['PNL_TITLE'] = USR_TITLE_LIST; //set title page
         print Template(NULL, $basetemplate)->show($str);
     }
 
     public function show_login() {
-        $basetemplate = APP_DIR . "appmodules/panel/views/templates/basetemplate.html";
-        $file = APP_DIR . "appmodules/panel/views/templates/login_form.html";
-        $form = file_get_contents($file);
         $GLOBALS['DICT']['PNL_TITLE'] = "Login"; //set title page
-        $default = Template(NULL, $basetemplate)->show($form);
+        $GLOBALS['DICT']['LOGIN_ACTION'] = "/panel/user/check"; //set title page
+
+
+        $file = APP_DIR . "core/templates/login_template.html";
+        $default = Template(NULL, $file)->show();
         $html = (CUSTOM_LOGIN_TEMPLATE) ? CUSTOM_LOGIN_TEMPLATE : $default;
         print $html;
     }

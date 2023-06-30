@@ -11,5 +11,7 @@ foreach($constants as $constant=>$value) {
     define($constant, $value);
     $GLOBALS['DICT'][$constant] = $value;
 }
+$GLOBALS['BASE_TEMPLATE_PANEL'] = APP_DIR . "core/templates/basetemplate_panel.html";
+
 
 ?>
