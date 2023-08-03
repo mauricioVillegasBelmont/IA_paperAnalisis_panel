@@ -1,0 +1,57 @@
+
+<div class="card">
+  <div class="card-header px-3">
+    <div class="row align-items-center">
+      <h1 class="h5 col"><i class="fas fa-table me-1"></i>{head}</h1>
+      <div class="ms-auto col text-end">
+        <a href="{action}/agregar" title="Agregar nuevo" class="btn btn-dark small"><i class="fa fa-edit"></i> {addnew}</a>
+      </div>
+    </div>
+  </div>
+  <div class="card-body table-responsive" id="contenedor_{tableid}">
+    <table id="{tableid}" class="display hover stripe">
+      <thead>
+        <tr>
+          <!--tdtitle-->
+          <th class="th_border">{tdtitle}</th><!--tdtitle-->
+          <!--thver-->
+          <th class="th_border">&nbsp;</th><!--thver-->
+          <!--theditar-->
+          <th class="th_border">&nbsp;</th><!--theditar-->
+          <!--theliminar-->
+          <th class="th_border">&nbsp;</th><!--theliminar-->
+        </tr>
+      </thead>
+      <tbody>
+        <!--listado-->
+        <tr>
+          <!--tdvalue-->
+          <td>{tdvalue}</td><!--tdvalue-->
+          <!--ver-->
+          <td><a href="{action}/ver/{id}" title="Ver/Descargar"><i class="fa fa-eye"></i></a></td><!--ver-->
+          <!--editar-->
+          <td><a href="{action}/editar/{id}" title="Editar"><i class="fa fa-edit"></i></a></td><!--editar-->
+          <!--eliminar-->
+          <td><a href="#" onclick="pymengine.collectorTable_delete('{modulo}','{modelo}',{id})" title="eliminar"><i class="fa fa-trash"></i></a></td><!--eliminar-->
+        </tr>
+        <!--listado-->
+
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<script type="text/javascript" charset="utf-8">
+  if(typeof triggers.init_collectorTable === 'undefined' ) triggers.init_collectorTable = [];
+  triggers.init_collectorTable.push({
+    id: '#{tableid}',
+    config: {
+        "language": {"url": '{lang}'},
+        "search": {"search": "{filter}"},
+        "order": [{colno}, "{order}"],
+        "pageLength": {length}
+      },
+      action: '{action}',
+  })
+</script>

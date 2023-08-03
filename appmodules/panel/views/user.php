@@ -4,7 +4,7 @@
 */
 
 
-class UserView { 
+class UserView {
 
     public function show_form($user_exists=False, $badpwd=False, $model=NULL, $tit='Agregar') {
         $dict = $this->__set_dict($model, $tit, $user_exists, $badpwd);
@@ -19,16 +19,21 @@ class UserView {
 
     public function listar($coleccion=array()) {
         foreach($coleccion as &$obj) {
-            $obj->admin = ($obj->level == 1) ? "<i class='fa fa-meh-o'></i>" : "";
+            $obj->admin = ($obj->level == 1) ? "<i class='fa fa-meh'></i>" : "";
         }
 
-        $options = array(
-            "filter"=>USR_FILTER, "colno"=>USR_ORDERBYCOLUMN,
-            "order"=>USR_ORDERDIRECTION, "length"=>USR_LENGTH,
-            "addnew"=>USR_LINK_ADDNEW, "head"=>USR_TABLE_TITLE
+
+        $table = array(
+            "collection" => $coleccion,
+            "modulo" => 'panel',
+            "modelo" => 'user',
+            "buttons" => array('ver' => false,'editar' => true, 'eliminar' => true),
+            "options" => array(
+                "head" => 'Usuarios en orden alfabético'
+            ),
         );
 
-        $str = CollectorViewer($coleccion, 'panel', 'user', False, True, True, $options)->get_table();
+        $str = CollectorTable($table)->get_table();
 
         $basetemplate = $GLOBALS['BASE_TEMPLATE_PANEL'];
         $GLOBALS['DICT']['PNL_TITLE'] = USR_TITLE_LIST; //set title page
@@ -74,8 +79,8 @@ class UserView {
             'opt0'=>'', 'user'=>$model->user, 'level'=>'', 'pwd'=>$model->pwd,
             'name'=>$model->name, 'lastname'=>$model->lastname, 'email'=>$model->email,
             'disabled'=>'disabled', 'titulo'=>$tit, 'user_id'=>$model->user_id,
-            'usererror'=>($user_exists) ? 'has-error' : '', 
-            'pwderror'=>($badpwd) ? 'has-error' : '', 
+            'usererror'=>($user_exists) ? 'has-error' : '',
+            'pwderror'=>($badpwd) ? 'has-error' : '',
             'levelerror'=>'',
             'msgerror'=>$this->__set_msgs($user_exists, $badpwd),
             'errorstyle'=> ($user_exists or $badpwd) ? 'block' : 'none');

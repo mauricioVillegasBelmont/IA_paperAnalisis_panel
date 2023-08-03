@@ -19,8 +19,18 @@
       <link rel="stylesheet" href="{PANEL_ASSETS}/css/dataTables.min.css" />
       <link rel="stylesheet" href="{PANEL_ASSETS}/css/sweetalert2.min.css" />
     </noscript>
+    <script src="{PANEL_ASSETS}/js/jquery-3.7.0.min.js"></script>
+    <script src="{PANEL_ASSETS}/js/bootstrap@5.0.2.min.js"></script>
+    <script src="{PANEL_ASSETS}/js/popper@2.9.2.min.js"></script>
+    <script src="{PANEL_ASSETS}/js/dataTables.min.js"></script>
+    <script src="{PANEL_ASSETS}/js/sweetalert2.all.min.js"></script>
+
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     {HEAD_IMPORTS}
+    <script type="text/javascript">
+      var conf = {}
+      var triggers = {}
+    </script>
   </head>
   <body class="sb-nav-fixed">
     <header class="sb-topnav navbar navbar-expand navbar-dark bg-black">
@@ -72,7 +82,7 @@
       <div id="layoutSidenav_content">
         <main>
           <div class="container-fluid px-4">
-            <h1 class="mt-4">Dashboard</h1>
+            <h1 class="h3 mt-4">{PNL_TITLE}</h1>
             <ol class="breadcrumb mb-4">
               <li class="breadcrumb-item active">Dashboard</li>
             </ol>
@@ -103,10 +113,7 @@
 
   
 
-  <script src="{PANEL_ASSETS}/js/jquery-3.7.0.min.js"></script>
-  <script src="{PANEL_ASSETS}/js/bootstrap@5.0.2.min.js"></script>
-  <script src="{PANEL_ASSETS}/js/popper@2.9.2.min.js"></script>
-  <script src="{PANEL_ASSETS}/js/sweetalert2.all.min.js"></script>
+  
   <script src="{PANEL_ASSETS}/js/panel-GUI.js"></script>
   {FOOTER_IMPORTS}
   </body>

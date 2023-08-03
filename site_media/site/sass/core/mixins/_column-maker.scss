@@ -1,3 +1,4 @@
+@use "sass:math";
 @function divisions($slice, $divisions, $container-width: 1200, $gutter-width: 2){
 
 	$slice-width: (($container-width/$divisions)) - (($gutter-width * ($divisions - 1)) / $divisions);
@@ -82,8 +83,8 @@
 	@for $i from 1 through $grid-columns {
 		.col-#{$i} {
 			@extend %width-100;
-			max-width: percentage($i / $grid-columns);
-			@include flex(0 0 percentage($i / $grid-columns));
+			max-width: percentage( math.div($i, $grid-columns) );
+			@include flex(0 0 percentage(math.div($i, $grid-columns)));
 		}
 	}
 	@each $breakpoint-name, $breakpoint-value in $breakpoints{
@@ -101,8 +102,8 @@
 				}
 				@for $i from 1 through $grid-columns {
 					.col-#{$breakpoint-name}-#{$i} {
-						max-width: percentage($i / $grid-columns);
-						@include flex(0 0 percentage($i / $grid-columns));
+						max-width: percentage(math.div($i, $grid-columns));
+						@include flex(0 0 percentage(math.div($i, $grid-columns)));
 					}
 				}
 			}

@@ -17,7 +17,7 @@ class UserController extends Controller {
     }
 
     public function editar($id=0) {
-        @SessionHandler()->check_state(1);
+        // @SessionHandler()->check_state(1);
         $this->model->user_id = $id;
         $this->model->get();
         $this->view->show_form(False, False, $this->model, 'Editar');
@@ -64,7 +64,7 @@ class UserController extends Controller {
         }else{
             HTTPHelper::exit_by_ee1001();
         }
-        
+
     }
 
     # ==========================================================================
@@ -74,7 +74,7 @@ class UserController extends Controller {
     # /panel/user/login (formulario para loguearse)
     public function login() {
         if(isset($_SESSION['level']) && $_SESSION['level']>0){
-            HTTPHelper::go("/dashboard");    
+            HTTPHelper::go("/dashboard");
         }
         $this->view->show_login();
     }
