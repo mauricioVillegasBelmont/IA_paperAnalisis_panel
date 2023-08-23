@@ -116,4 +116,35 @@ function CollectorViewer($collection=array(), $modulo='', $modelo='',
     return new CollectorViewer($collection, $modulo, $modelo, $ver, $editar,
         $eliminar, $options);
 }
+
+# extended usage for collector CollectorViewer
+class CollectorTable extends CollectorViewer{
+  function __construct($collection=array(), $modulo='', $modelo='', $buttons=array(),$options=array(),$template="") {
+    parent::__construct();
+    $this->collection = $collection;
+    $this->action = "/$modulo/$modelo";
+    $this->table = empty($template)?file_get_contents(APP_DIR."common/plugins/collectorviewer/collectorviewer.html"):$template;
+    $this->options['lang'] = CVW_LANG;
+    if(!empty($options)) $this->options = $options;
+    if (empty($template) && empty($buttons)) $buttons = array('ver'=>false, 'editar'=>false,'eliminar'=>false);
+    $this->buttons = $buttons;
+    $this->set_buttons();
+  }
+  function alter_collection() {
+    foreach($this->collection as $k=>&$obj) {
+      $obj = (object)$obj;
+      $ban = True;
+      foreach($obj as $property=>$value) {
+        if(strpos($property, '_id') > 0 && $ban){$obj->id = $value; $ban=False;}
+        else {
+          $obj->id = strval($k); $ban=False;
+        }
+      }
+    }
+  }
+}
+
+function CollectorTable($collection=array(), $modulo='', $modelo='', $buttons=array(),$options=array(),$template="") {
+  return new CollectorTable($collection, $modulo, $modelo, $buttons, $options, $template);
+}
 ?>

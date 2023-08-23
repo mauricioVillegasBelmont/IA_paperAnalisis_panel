@@ -5,8 +5,12 @@
 
 <div class="panel panel-default table-responsive">
   <div class="panel-heading text-right">
-    <p class="col-md-10 text-left">Reportes de activdad</p>
-    <br />
+    <p class="col-md-10 text-left">Tipo: <b>{tipo_reporte}</b>.</p>
+    <!--descarga_doc-->
+    <div>
+      <a href="{action}/descargar/{tipo_reporte}" title="Descarga">Descargar <i class="fa fa-download"></i></a>
+    </div>
+    <!--/descarga_doc-->
   </div>
   <!--votacion-->
   <div class="panel panel-default table-responsive">
@@ -45,9 +49,9 @@
 </div>
 
 <script type="text/javascript" charset="utf-8">
-	$(document).ready(function() {
-		$('#{tableid}').dataTable({
-		    language: {
+  $(document).ready(function() {
+    $('#{tableid}').dataTable({
+        language: {
                 url: '{lang}'
             },
             "search": { 
@@ -55,8 +59,8 @@
             },
             "order": [{colno}, "{order}"],
             "pageLength": {length}
-		});
-	} );
+    });
+  } );
   function confirmar(id) {
       pregunta = "¿Está seguro de eliminar el registro id:" + id + "\"?";
       if(confirm(pregunta)) {

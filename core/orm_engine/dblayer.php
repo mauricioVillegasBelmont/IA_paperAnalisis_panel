@@ -37,7 +37,10 @@ class DBLayer {
         $query->execute();
 
         $errors = $query->errorInfo();
-        if(!is_null($errors[1])) DBLayerErrorHandler()->handle(EH_BOTH, $errors);
+        if(!is_null($errors[1])){
+            if(!PRODUCTION){echo "ERROR:<pre>"; var_dump($errors); echo "</pre>";}
+            DBLayerErrorHandler()->handle(EH_BOTH, $errors);
+        }
 
         $is_insert = (strpos(strtoupper($sql), 'INSERT') === 0);
         $is_select = (strpos(strtoupper($sql), 'SELECT') === 0);
