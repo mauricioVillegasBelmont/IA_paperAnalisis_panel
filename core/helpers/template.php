@@ -118,7 +118,8 @@ class Template {
         $key = ($_SESSION['user_id'] > 0) ? 'nologin' : 'login';
         $user = (empty($_SESSION['username'])) ? '' : $_SESSION['username'];
         $level = ($_SESSION['level'] == 1) ? " (admin)" : "";
-        $dict = array("username"=>$user, "level"=>$level);
+        $uid = $_SESSION['user_id'];
+        $dict = array("USERNAME"=>$user, "LEVEL"=>$level, "UID"=> $uid);
         $this->str = Template($this->delete($key))->render($dict);
     }
 

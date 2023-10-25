@@ -152,4 +152,36 @@ class ToolsHelper {
       $data = openssl_decrypt($ct, 'aes-256-cbc', $key, true, $iv);
       return json_decode($data, true);
     }
+
+    /**
+     * format ms values
+     * @param int $tms time in miliseconds
+     * @return string HH:MM:SS.000 time format
+     * */
+    public static function ms_time_formater($tms =0){
+      $ms = $tms%1000;
+      $t = ($tms - $ms) / 1000;
+      $secs = $t%60;
+      $t = ($t - $secs)/60;
+      $mins = $t%60;
+      $hrs = ($t - $mins)/60;
+
+      $string_ms =($ms<100?( $ms<10?'00':'0' ):'').$ms;
+      $string_secs = ($secs<10? '0':'').$secs;
+      $string_mins = ($mins<10? '0':'').$mins;
+      $string_hrs = ($hrs<10? '0':'').$hrs;
+      $time = $string_hrs.':'.$string_mins .':'. $string_secs .'.'. $string_ms;
+
+      return $time;
+    }
+
+  static function shuffle(&$a, $indexes){
+    $N = count($indexes);
+    while ($N--) {
+      $perm = rand(0, $N);
+      $swap = $a[$indexes[$N]];
+      $a[$indexes[$N]] = $a[$indexes[$perm]];
+      $a[$indexes[$perm]] = $swap;
+    }
+  }
 }

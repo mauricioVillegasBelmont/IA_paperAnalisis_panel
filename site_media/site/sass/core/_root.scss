@@ -1,0 +1,14 @@
+:root{
+  @each $color_name, $color in $color_list {
+    --c-#{$color_name} : #{$color};
+    @each $alpa in $color_alpha{
+      --c-#{$color_name}-#{$alpa} : #{ transparentize($color, (1 - (0.01*$alpa))) };
+    }
+    @each $darken in $color_darken{
+      --c-#{$color_name}-darken-#{$darken} : #{ darken( $color, ($darken) ) };
+    }
+    @each $lightness in $color_lightness{
+      --c-#{$color_name}-lightness-#{$lightness} : #{ lighten($color, ($lightness) ) };
+    }
+  }
+}

@@ -4,13 +4,13 @@
 */
 
 
-class UserView { 
+class UserView {
 
     public function show_form($user_exists=False, $badpwd=False, $model=NULL, $tit='Agregar') {
         $dict = $this->__set_dict($model, $tit, $user_exists, $badpwd);
         $this->__set_optleveldict($model->level, $dict);
 
-        $basetemplate = APP_DIR . "appmodules/panel/views/templates/basetemplate.html";
+        $basetemplate = $GLOBALS['BASE_TEMPLATE_PANEL'];
         $str = file_get_contents( APP_DIR . "appmodules/panel/views/templates/add_user.html");
         $html = Template($str)->render($dict);
         $GLOBALS['DICT']['PNL_TITLE'] = $this->__get_pnl_title($tit); //set title page
@@ -19,28 +19,34 @@ class UserView {
 
     public function listar($coleccion=array()) {
         foreach($coleccion as &$obj) {
-            $obj->admin = ($obj->level == 1) ? "<i class='fa fa-meh-o'></i>" : "";
+            $obj->admin = ($obj->level == 1) ? "<i class='fa fa-meh'></i>" : "";
         }
 
-        $options = array(
-            "filter"=>USR_FILTER, "colno"=>USR_ORDERBYCOLUMN,
-            "order"=>USR_ORDERDIRECTION, "length"=>USR_LENGTH,
-            "addnew"=>USR_LINK_ADDNEW, "head"=>USR_TABLE_TITLE
+
+        $table = array(
+            "collection" => $coleccion,
+            "modulo" => 'panel',
+            "modelo" => 'user',
+            "buttons" => array('ver' => false,'editar' => true, 'eliminar' => true),
+            "options" => array(
+                "head" => 'Usuarios en orden alfabético'
+            ),
         );
 
-        $str = CollectorViewer($coleccion, 'panel', 'user', False, True, True, $options)->get_table();
+        $str = CollectorTable($table)->get_table();
 
-        $basetemplate = APP_DIR . "appmodules/panel/views/templates/basetemplate.html";
+        $basetemplate = $GLOBALS['BASE_TEMPLATE_PANEL'];
         $GLOBALS['DICT']['PNL_TITLE'] = USR_TITLE_LIST; //set title page
         print Template(NULL, $basetemplate)->show($str);
     }
 
     public function show_login() {
-        $basetemplate = APP_DIR . "appmodules/panel/views/templates/basetemplate.html";
-        $file = APP_DIR . "appmodules/panel/views/templates/login_form.html";
-        $form = file_get_contents($file);
         $GLOBALS['DICT']['PNL_TITLE'] = "Login"; //set title page
-        $default = Template(NULL, $basetemplate)->show($form);
+        $GLOBALS['DICT']['LOGIN_ACTION'] = "/panel/user/check"; //set title page
+
+
+        $file = APP_DIR . "core/templates/login_template.html";
+        $default = Template(NULL, $file)->show();
         $html = (CUSTOM_LOGIN_TEMPLATE) ? CUSTOM_LOGIN_TEMPLATE : $default;
         print $html;
     }
@@ -73,8 +79,8 @@ class UserView {
             'opt0'=>'', 'user'=>$model->user, 'level'=>'', 'pwd'=>$model->pwd,
             'name'=>$model->name, 'lastname'=>$model->lastname, 'email'=>$model->email,
             'disabled'=>'disabled', 'titulo'=>$tit, 'user_id'=>$model->user_id,
-            'usererror'=>($user_exists) ? 'has-error' : '', 
-            'pwderror'=>($badpwd) ? 'has-error' : '', 
+            'usererror'=>($user_exists) ? 'has-error' : '',
+            'pwderror'=>($badpwd) ? 'has-error' : '',
             'levelerror'=>'',
             'msgerror'=>$this->__set_msgs($user_exists, $badpwd),
             'errorstyle'=> ($user_exists or $badpwd) ? 'block' : 'none');

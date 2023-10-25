@@ -7,7 +7,7 @@
 class DashboardView { 
 
     public function show_home() {
-        $basetemplate = APP_DIR . "appmodules/panel/views/templates/basetemplate.html";
+        $basetemplate =$GLOBALS['BASE_TEMPLATE_PANEL'];
         $file = APP_DIR . "appmodules/panel/views/templates/d-home.html";
         $str = file_get_contents($file);
         //is admin
@@ -24,7 +24,7 @@ class DashboardView {
         $_dict = array("CONSOLA"=>$console);
         $dict = array_merge($_dict, $GLOBALS['DICT']);
 
-        $basetemplate = APP_DIR . "appmodules/panel/views/templates/basetemplate.html";
+        $basetemplate = $GLOBALS['BASE_TEMPLATE_PANEL'];
         $file = APP_DIR . "appmodules/panel/views/templates/d-consola.html";
         $str = file_get_contents($file);
         $GLOBALS['DICT']['PNL_TITLE'] = "Consola"; //set title page

@@ -12,6 +12,7 @@ class DashboardController extends Controller {
     # ==========================================================================
 
     public function home() {
+        // var_dump($GLOBALS['DICT']);die();
         SessionHandler()->check_state(2);
         $this->view->show_home();
     }

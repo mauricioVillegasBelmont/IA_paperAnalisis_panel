@@ -1,5 +1,6 @@
+PANEL_ASSETS = '/site_media/panel'
 PNL_TITLE = "Panel Sitio"
-PNL_COPYRIGHT_TXT = "develop by PymEngine"
+PNL_COPYRIGHT_TXT = "develop by PymEngine | Copyright &copy; pymeweb.mx "
 
 USR_TITLE_ADD = "Agregar Usuario"
 USR_TITLE_EDIT = "Editar Usuario"
@@ -45,12 +46,13 @@ ACT_LABEL_ACTIVE = "Poner online"
 ACT_BTN_SAVE = "Guardar actividad"
 
 [COLLECTOR_VIEWER]
-USR_FILTER = ""
-USR_ORDERBYCOLUMN = 1  ; 0: ID, 1: Name, 2: Level, 3: Admin
-USR_ORDERDIRECTION = "asc"
-USR_LENGTH = 25
-USR_LINK_ADDNEW = "Agregar nuevo usuario"
-USR_TABLE_TITLE = "Usuarios en orden alfabético"
+CV_DEFAULT_FILTER = ''
+CV_DEFAULT_ORDERBYCOLUMN = 0  ; 0: ID, 1: Name, 2: Level, 3: Admin
+CV_DEFAULT_ORDERDIRECTION = "asc"
+CV_DEFAULT_LENGTH = 25
+CV_DEFAULT_LINK_ADDNEW = "Agregar nuevo elemento"
+CV_DEFAULT_TABLE_TITLE = "Visualizador de Colecciones"
+
 ACT_FILTER = ""
 ACT_ORDERBYCOLUMN = 1  ; 0: ID, 1: Name, 2: Level, 3: Admin
 ACT_ORDERDIRECTION = "asc"

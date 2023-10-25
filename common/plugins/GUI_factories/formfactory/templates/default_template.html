@@ -1,0 +1,162 @@
+<!--
+TEST template for GUI_FormFactory
+-->
+
+<!--FORM-->
+<form id="{formid}" method="{method}" action="{action}" enctype="multipart/form-data">
+  {ALERT}
+  {FORMULARIO}
+</form>
+<!--FORM-->
+
+
+<!--LABEL-->
+<label for="{id}" class="control-label">{label}</label>
+<!--LABEL-->
+
+
+<!--INPUT-->
+<div class="form-group" id="EuWFP_{name}">
+  {label}
+  <input type="{type}" name="{name}" id="{id}" value="{value}" class="form-control"
+  placeholder="{placeholder}"{extras}> <span id="{name}_error">{error}</span>
+</div>
+<!--INPUT-->
+<!--HIDDEN-->
+<input type="hidden" name="{name}" id="{id}" value="{value}">
+<!--HIDDEN-->
+<!--TEXTAREA-->
+<div class="form-group" id="EuWFP_{name}">
+  {label}
+  <textarea name="{name}" id="{id}" placeholder="{placeholder}"{extras}
+  class="form-control">{value}</textarea>
+  <br><span id="{name}_error"></span>
+</div>
+<!--TEXTAREA-->
+
+<!--BUTTON-->
+<div class="form-group">
+  <button type="{type}" name="{name}" class="btn btn-primary" value="{value}" {extras}>{text}</button>
+</div>
+<!--BUTTON-->
+
+
+
+<!--NAVBARCONTAINER-->
+<div class="col-md-12">
+  <label class="td">&nbsp;</label>
+  <!--NAVBAR-->
+  <a href="{href}" class="linkformnav">{anchor}</a><!--NAVBAR-->
+</div>
+<!--NAVBARCONTAINER-->
+
+<!--TITLE--><h3 class="form"{extras}>{label}</h3><!--TITLE-->
+
+<!--INSTRUCTIONS-->
+<div class="instructions"{extras}>
+  <p>{label}</p>
+</div>
+<!--INSTRUCTIONS-->
+
+
+
+<!--ALERT-->
+<div class="alert alert-danger" id="EuWFP_alert">Por favor, revise los
+  errores y vuelva a intentarlo</div>
+  <!--ALERT-->
+
+
+
+
+  <!--URL-->
+  <div class="form-group" id="EuWFP_{name}">
+    {label}
+    <input type="url" name="{name}" id="{id}" value="{value}" class="form-control"
+    placeholder="http://www.example.org"{extras}> <span id="{name}_error"></span>
+  </div>
+  <!--URL-->
+  <!--LINK-->
+  <div>
+    <a href="{value}" class="linkform"{extras}>{label}</a>
+  </div>
+  <!--LINK-->
+
+  <!--SELECTCONTAINER-->
+  <div class="form-group" id="EuWFP_{name}">
+    {label}
+    <select name="{name}" id="{id}" class="form-control"{extras}>
+      <!--SELECT--><option value="{value}"{extras}>{text}</option>
+      <!--SELECT-->
+    </select> <span id="{name}_error"></span>
+  </div>
+  <!--SELECTCONTAINER-->
+
+  <!--RADIOCONTAINER-->
+  <div id="EuWFP_{name}">
+    <span class="control-label">{label}</span>
+    <div class="td">
+      <!--RADIO--><label class="labelcontainer">
+      <input type="radio" name="{name}" value="{value}" {extras}> {text}</label>
+      <!--RADIO-->
+      <br><span id="{name}_error"></span>
+    </div>
+  </div>
+  <!--RADIOCONTAINER-->
+
+  <!--CHECKBOXCONTAINER-->
+  <div id="EuWFP_{name}">
+    <span class="control-label">{label}</span>
+    <div class="td">
+      <!--CHECKBOX--><label class="labelcontainer">
+      <input type="checkbox" name="{name}[]" value="{value}"{extras}> {text}</label><br>
+      <!--CHECKBOX-->
+      <span id="{name}_error"></span>
+    </div>
+  </div>
+  <!--CHECKBOXCONTAINER-->
+
+
+
+  <!--FIELDSET-->
+  <fieldset><legend><h4>{value}</h4></legend>
+    {content}
+  </fieldset>
+  <!--FIELDSET-->
+
+  <!--LAYER-->
+  <div class="col-md-{value}">
+    {content}
+  </div>
+  <!--LAYER-->
+
+  <!--CAPTCHA-->
+  <div id="EuWFP_{name}">
+    {label}
+    <span class="captcha"{extras}>{value}</span>
+    <input type="text" name="{name}" id="{id}" size="6"> <span id="{name}_error"></span>
+  </div>
+  <!--CAPTCHA-->
+
+  <!--SUBMIT-->
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary" value="{value}"{extras}>{value}</button>
+  </div>
+  <!--SUBMIT-->
+
+
+  <!--ERROR-ZONE-->
+  <script>
+    var EuWFP_campos_error = {value};
+    var EuWFP_error_msg = "";
+    var EuWFP_error_msg_ini = "<b>{label}</b><br>";
+    for(var EuWFP_key in EuWFP_campos_error) {
+      document.getElementById('EuWFP_' + EuWFP_key).className = "form-group has-error";
+      EuWFP_error_msg += EuWFP_campos_error[EuWFP_key] + "<br>";
+      document.getElementById('EuWFP_alert').style.display = 'block';
+      document.getElementById('EuWFP_alert').innerHTML = EuWFP_error_msg_ini + EuWFP_error_msg;
+    }
+    if(EuWFP_error_msg == '') {
+      document.getElementById('EuWFP_alert').style.display = 'none';
+    }
+  </script>
+  <!--ERROR-ZONE-->

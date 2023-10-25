@@ -1,0 +1,36 @@
+<!--
+saadssdasd
+ -->
+
+<!--MENU-TITLE-->
+<div class="sb-sidenav-menu-heading">{TITLE}</div>
+<!--MENU-TITLE-->
+
+<!--MENU-ITEM-->
+<a class="nav-link" href="{HREF}">
+    <div class="sb-nav-link-icon">{ICON}</div> {TITLE}
+</a>
+<!--MENU-ITEM-->
+
+<!--MENU-ITEM-COLLAPSE-->
+<a class="nav-link collapsed" href="#" data-bs-toggle="collapse" aria-expanded="false" aria-controls="{ID_SUBMENU}" data-bs-target="#{ID_SUBMENU}">
+    <div class="sb-nav-link-icon">{ICON}</div>
+    {TITLE}
+    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+</a>
+<div class="collapse" id="{ID_SUBMENU}" aria-labelledby="{ID_SUBMENU}-expandBtn" data-bs-parent="#sidenavAccordion">
+    {SUBMENU}
+</div>
+<!--MENU-ITEM-COLLAPSE-->
+
+
+<!--SUBMENU-->
+<nav class="sb-sidenav-menu-nested nav">
+    <!--SUBMENU-ITEM-->
+    <a class="nav-link" href="{HREF}">{TITLE}</a>
+    <!--SUBMENU-ITEM-->
+</nav>
+<!--SUBMENU-->
+
+
+

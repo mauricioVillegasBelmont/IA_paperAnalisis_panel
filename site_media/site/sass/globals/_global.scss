@@ -1,0 +1,18 @@
+.scroll-style{
+  @extend %overflow-scroll;
+}
+@include global-color-class();
+.trbl-0{
+  @extend %trbl-0;
+}
+.round-container{
+  border-radius: 50%;
+  overflow: hidden;
+  @include aspect-ratio(1,1);
+}
+.shrink-0{
+  flex-shrink: 0;
+}
+.shrink-1{
+  flex-shrink: 1;
+}

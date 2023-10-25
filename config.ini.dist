@@ -20,7 +20,7 @@
 ; @link       https://pymeweb.mx
 ; @version    4.0
 ;
-; COPIAR ESTE ARCHIVO COMO config.ini 
+; COPIAR ESTE ARCHIVO COMO config.ini
 ; MODIFICAR EL VALOR DE LAS VARIABLES QUE CORRESPONDAN
 
 
@@ -83,7 +83,8 @@ SECURITY_TRACK = true ; Para habilitar codigos de trackeo como UTM
 
 
 [PLUGINS]
-collectorviewer = true ; common/plugins/collectorviewver
+collectortable = true ; common/plugins/collectortable
+collectorviewer = false ; common/plugins/collectorviewver
 securitylayer = true   ; common/plugins/securitylayer
 guigenerator = true    ; common/plugins/guigenerator (sustituye a WebForm por WebFormPRO)
 webform = false        ; common/plugins/webform (obsoleto)
@@ -91,7 +92,7 @@ webform = false        ; common/plugins/webform (obsoleto)
 
 [COLLECTORVIEWER]
 ; JSON de textos en el idioma deseado (por defecto: español)
-; Los CDN de los diversos idiomas pueden obtenerse en 
+; Los CDN de los diversos idiomas pueden obtenerse en
 ; http://datatables.net/plug-ins/i18n/#Translations
 CVW_LANG = '//cdn.datatables.net/plug-ins/3cfcc339e89/i18n/Spanish.json'
 

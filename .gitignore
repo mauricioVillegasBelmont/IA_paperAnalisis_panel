@@ -11,6 +11,8 @@ config.codekit
 */.sass-cache
 */config.codekit
 config.rb
+
+#help extensions
 *.back
 *.old
 *.map
@@ -26,6 +28,7 @@ Thumbs.db
 ehthumbs.db
 Desktop.ini
 $RECYCLE.BIN/
+
 # Linux
 .*
 !.gitignore
@@ -43,3 +46,13 @@ Icon
 ._*
 .Spotlight-V100
 .Trashes
+
+# logs
+*.log
+
+# vscode
+.vscode
+.vscode/*
+.code-workspace
+*.vscode
+*.code-workspace
