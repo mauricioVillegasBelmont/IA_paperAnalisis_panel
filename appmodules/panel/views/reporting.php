@@ -1,48 +1,47 @@
 <?php
-
 /**
  * Vistas del ABM de Dashboard y SessionHandler
  */
 class ReportingView {
 		public function listar($data = NULL, $type = NULL){
-				$options = array(
-						"filter" => ACT_FILTER, "colno" => ACT_ORDERBYCOLUMN,
-						"order" => ACT_ORDERDIRECTION, "length" => ACT_LENGTH,
-						"addnew" => ACT_LINK_ADDNEW, "head" => ACT_TABLE_TITLE
+
+			$table = array(
+					"collection" => $data->list,
+					"template" => "appmodules/panel/views/templates/reporte/lista.html",
+					"modulo" => 'panel',
+					"modelo" => 'reporting',
+					"buttons" => array(
+						'ver' => false,
+						'editar' => false,
+						'eliminar' => false,
+						'add' => false,
+					),
+					"options" => array(
+						"head" => "Reporte {$type}",
+					),
 				);
 
 				switch ($type) {
-						case "reportes":
-								$cv = CollectorViewer($data->list, 'panel', 'actividad', False, False, False, $options);
-								$cv->table = file_get_contents(APP_DIR . "appmodules/panel/views/templates/reporte/lista.html");
-								$cv->buttons['reporte'] = True;
-								$cv->set_buttons();
-								$str = $cv->get_table();
-								break;
-						case "registro":
-								$cv = CollectorViewer($data->list, 'panel', 'dashboard', False, False, False, $options);
-								$cv->table = file_get_contents(APP_DIR . "appmodules/panel/views/templates/reporte/lista.html");
-								$cv->buttons['reporte'] = False;
-								$cv->buttons['descarga'] = False;
-								$cv->buttons['descarga_doc'] = True;
-								$cv->set_buttons();
-								$str = $cv->get_table();
-								break;
-						default:
-								$cv = CollectorViewer($data->list, 'panel', 'dashboard', False, False, False, $options);
-								$cv->table = file_get_contents(APP_DIR . "appmodules/panel/views/templates/reporte/lista.html");
-								$cv->buttons['reporte'] = False;
-								$cv->buttons['descarga'] = False;
-								$cv->buttons['descarga_doc'] = True;
-								$cv->set_buttons();
-								$str = $cv->get_table();
-								//$str = CollectorViewer($data->list, 'panel', 'actividad', False, True, True, $options)->get_table();
-								break;
+					case "reportes":
+						$table['buttons']['reporte'] = true;
+						break;
+					case "registro":
+						$table['buttons']['reporte'] = False;
+						$table['buttons']['descarga'] = False;
+						$table['buttons']['descarga_doc'] = True;
+						break;
+					default:
+						$table['buttons']['reporte'] = False;
+						$table['buttons']['descarga'] = False;
+						$table['buttons']['descarga_doc'] = True;
+						break;
 				}
-				$dict = array('tipo_reporte' => $type);
 
+				$str = CollectorTable($table)->get_table();
+
+				$dict = array('tipo_reporte' => $type);
 				$basetemplate = $GLOBALS['BASE_TEMPLATE_PANEL'];
-			
+
 				$GLOBALS['DICT']['PNL_TITLE'] = "Reportes"; //set title page
 				$html = Template(NULL, $basetemplate)->show($str);
 				if ($type !== "votacion") $html = Template($html)->delete("votacion");
@@ -50,6 +49,7 @@ class ReportingView {
 				$html = Template($html)->render($dict);
 				print $html;
 		}
+
 		public function descarga($data = NULL, $tipo = "default"){
 				if ($data == NULL || !is_array($data->list) || count($data->list) == 0) {
 						HTTPHelper::error_response();
@@ -88,5 +88,3 @@ class ReportingView {
 				print Template(NULL, $basetemplate)->show($str);
 		}
 }
-
-
