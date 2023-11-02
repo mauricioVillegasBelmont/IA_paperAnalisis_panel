@@ -4,6 +4,7 @@ import('core.libs.europio_code');
 
 
 class SecurityLayer {
+    public $strict;
 
     public function __construct($strict=False) {
         $this->strict = $strict;

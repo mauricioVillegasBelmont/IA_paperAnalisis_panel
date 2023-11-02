@@ -12,6 +12,10 @@ import('core.mvc_engine.helper');
 
 
 abstract class Controller {
+    public $api;
+    public $apidata;
+    public $model;
+    public $view;
 
     public function __construct($resource='', $arg='', $api=False) {
         $this->api = $api;
