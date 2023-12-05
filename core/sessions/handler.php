@@ -6,6 +6,7 @@ import('core.helpers.http');
 
 
 class SessionBaseHandler {
+    public $state;
 
     public function __construct() {
         $this->state = False;

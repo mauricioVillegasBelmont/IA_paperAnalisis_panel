@@ -11,6 +11,9 @@
 */
  
 class Template {
+    public $str;
+    public $filename;
+    public $dict;
  
     public function __construct($str='', $custom_file='') {
         $this->str = $str;
@@ -115,10 +118,10 @@ class Template {
     }
 
     function render_navbar() {
-        $key = ($_SESSION['user_id'] > 0) ? 'nologin' : 'login';
+        $key = (isset($_SESSION['user_id']) && $_SESSION['user_id'] > 0) ? 'nologin' : 'login';
         $user = (empty($_SESSION['username'])) ? '' : $_SESSION['username'];
-        $level = ($_SESSION['level'] == 1) ? " (admin)" : "";
-        $uid = $_SESSION['user_id'];
+        $level = (isset($_SESSION['level']) && $_SESSION['level'] == 1) ? " (admin)" : "";
+        $uid = (isset($_SESSION['user_id']))?$_SESSION['user_id']:NULL;
         $dict = array("USERNAME"=>$user, "LEVEL"=>$level, "UID"=> $uid);
         $this->str = Template($this->delete($key))->render($dict);
     }

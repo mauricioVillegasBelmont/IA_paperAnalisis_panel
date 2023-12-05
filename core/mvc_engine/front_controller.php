@@ -30,9 +30,7 @@ class FrontController {
     # Si el enrutamiento MVC estándar falla, efectúa una llamada recursiva
     # que acciona el enrutador personalizado
     public static function start($rerouting=False) {
-        list(self::$modulo, self::$modelo, self::$recurso, self::$arg,
-            self::$api) = ApplicationHandler::handler($rerouting);
-
+        list(self::$modulo, self::$modelo, self::$recurso, self::$arg, self::$api) = ApplicationHandler::handler(True);
         if(self::$api && !API_ENABLED) HTTPHelper::return_api_not_enabled();
         self::check_access();
 
@@ -74,7 +72,7 @@ class FrontController {
         $controllername = MVCEngineHelper::set_name('controller', self::$modelo);
         $resource_name = MVCEngineHelper::set_name('resource', self::$recurso);
         $metodo_existe = method_exists($controllername, $resource_name);
-        $metodo_accesible = is_callable(array($controllername, $resource_name));
+        $metodo_accesible = is_callable(array($controllername, $resource_name), True);
         self::$controller = $controllername;
         self::$recurso = $resource_name;
         if($metodo_existe && $metodo_accesible) self::call();
@@ -83,8 +81,7 @@ class FrontController {
     # Llama al controlador solicitado por el usuario
     private static function call() {
         self::$pass = True;
-        $controller = new self::$controller(self::$recurso, self::$arg,
-            self::$api);
+        $controller = new self::$controller(self::$recurso, self::$arg, self::$api);
         if(self::$api) ApiRESTFul::return_data($controller->apidata);
     }
 

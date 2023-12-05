@@ -34,7 +34,7 @@ foreach($options as $section=>$config) {
 ini_set('include_path', APP_DIR);
 ini_set('session.gc_maxlifetime', SESSION_LIFE_TIME);
 ini_set('session.cookie_lifetime', SESSION_LIFE_TIME);
-ini_set('session.cache_expire', 720);
+ini_set('session.cache_expire', 7200);
 date_default_timezone_set('Mexico/General');
 
 if(!PRODUCTION) {
@@ -55,7 +55,7 @@ if(!isset($GLOBALS['DICT'])) $GLOBALS['DICT'] = array();
 function import($str='', $exit=True) {
     $file = str_replace('.', '/', $str);
     if(file_exists(APP_DIR . "$file.php")) {
-        require_once "$file.php";
+        require_once("$file.php");
     } else {
         if($exit) exit("FATAL ERROR: no se pudo importar '$str'");
     }
