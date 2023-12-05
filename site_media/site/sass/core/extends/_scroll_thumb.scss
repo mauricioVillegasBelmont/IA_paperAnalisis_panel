@@ -9,11 +9,11 @@
     width: .5rem;
     height: .5rem;
     background-color: color_var('white');
-    border: 1px solid color_var('black');
+    // border: 1px solid color_var('black');
   }
 
   &::-webkit-scrollbar-thumb{
     border-radius: calc(.5rem / 2);
-    background-color: color_var('primary');
+    background-color: color_var('bright-turquoise');
   }
 }

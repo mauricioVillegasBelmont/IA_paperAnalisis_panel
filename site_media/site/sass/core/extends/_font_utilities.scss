@@ -17,18 +17,13 @@ $fw_steps: 9 !default;
     font-weight: #{(100*$i)} !important;
   };
 }
-$gobal_lineheigt: 1.25 !default;
 %font-format{
-  line-height: $gobal_lineheigt;
-  font-weight: inherit;
-  font-size: inherit;
+  line-height: var(--f-linehight-value);
+  font-weight: var(--fw-value);
+  font-family: var(--ff-value);
+  font-size: var(--fs-value);
 }
-%heading-format{
-  @extend %font-format;
-}
-%text-format{
-  @extend %font-format;
-}
+
 
 %text-center{
   text-align: center;

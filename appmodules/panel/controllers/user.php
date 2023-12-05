@@ -138,7 +138,7 @@ class UserController extends Controller {
         if(empty($list)) return $list;
         foreach($list as $element){
             foreach($remove as $key){
-                if(isset($element->$key)) unset($element->$key);
+                if(property_exists($element, $key)) unset($element->$key);
             }
         }
         return $list;

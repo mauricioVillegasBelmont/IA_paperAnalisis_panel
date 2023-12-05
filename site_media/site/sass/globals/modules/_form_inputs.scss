@@ -30,7 +30,7 @@
 .input-text,.input-select{
   @extend %display-block;
   @extend %width-100;
-  @extend %text-format;
+  @extend %font-format;
   @extend %input-format;
 
 }

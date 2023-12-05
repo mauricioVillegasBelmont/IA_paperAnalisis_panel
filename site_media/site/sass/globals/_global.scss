@@ -5,7 +5,7 @@
 .trbl-0{
   @extend %trbl-0;
 }
-.round-container{
+.perfect-circle{
   border-radius: 50%;
   overflow: hidden;
   @include aspect-ratio(1,1);
@@ -15,4 +15,24 @@
 }
 .shrink-1{
   flex-shrink: 1;
+}
+.grow-0{
+  flex-grow: 0;
+}
+.grow-1{
+  flex-grow: 1;
+}
+.flex-0{
+  flex: 0;
+}
+.flex-1{
+  flex: 1;
+}
+.hide-hf{
+  @include media-breakpoint-down(lg){
+    #main-header,
+    #main-footer{
+      display: none;
+    }
+  }
 }

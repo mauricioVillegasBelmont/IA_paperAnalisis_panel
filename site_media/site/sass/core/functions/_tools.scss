@@ -4,13 +4,38 @@
   @return (false != index($list, $value));
 }
 
+@function _divide($a, $b){
+  // $c: math.div($a, $b);
+  $c: ($a / $b);
+  @return $c;
+
+}
+
 //font utilities
 $html-font-size: 16px !default;
 @function stripUnit($value) {
-  @return math.div($value, ($value * 0 + 1));
+  @return _divide($value, ($value * 0 + 1));
 }
 @function px_to_rem($pxValue){
-  // @debug $pxValue;
+  @return #{  _divide(stripUnit($pxValue), stripUnit($html-font-size)) }rem;
+}
 
-  @return #{ math.div(stripUnit($pxValue), stripUnit($html-font-size)) }rem;
+
+$ASSET_VERSION: ''  !default;
+$CSS_IMAGES_PATH: '/'  !default;
+@function site_background_image($img){
+  $bg_img: $CSS_IMAGES_PATH + $img;
+  $_VERSION: '';
+  @if not ($ASSET_VERSION == "") or not ($ASSET_VERSION == '') or not ($ASSET_VERSION == 0) {
+    $_VERSION:unquote('?v=#{$ASSET_VERSION}');
+  }
+  @return url(unquote("#{$bg_img}#{$_VERSION}"));
+}
+
+@function str-replace($string, $search, $replace: '') {
+  $index: str-index($string, $search);
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+  }
+  @return $string;
 }
