@@ -42,7 +42,7 @@ ul,ol{
   &.tick{
     @extend %icon-list;
     li::before{
-      content: $icon-radio-empty-filled;
+      content: $icon-check-mark;
     }
   }
   &.chevron{
@@ -164,8 +164,8 @@ a[target="_blank"]:not(.elipsis, .clip, .nowrap){
 .fs-extrasmall{
   --fs-value: calc(#{px_to_rem(16)} * .75);;
 }
-sub{vertical-align: sub;}
-sup{vertical-align: super;}
+sub{ vertical-align: sub;}
+sup{ vertical-align: super;}
 .text-normal{
   font-weight: normal;
 }
@@ -224,7 +224,7 @@ $font_weight: false !default;
 .text-right{@extend %text-right;}
 .text-left{@extend %text-left;}
 .text-justify{@extend %text-justify;}
-$text_justify_utilities:false !default;
+$text_justify_utilities: false !default;
 @if $text_justify_utilities{
   @include text-justify-utilities();
 }

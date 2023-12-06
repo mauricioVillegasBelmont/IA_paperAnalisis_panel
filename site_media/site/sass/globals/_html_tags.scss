@@ -6,11 +6,8 @@ html{
   --fw-value: normal;
   --header-h:0;
   --body-h: 0;
-  --footer-h:0;
-  --header-h: 5rem;
-  @include media-breakpoint-up(lg){
-    --header-h: 135px;
-  }
+  --footer-h: auto;
+  --header-h: auto;
 }
 html,body{
   scroll-behavior: smooth;

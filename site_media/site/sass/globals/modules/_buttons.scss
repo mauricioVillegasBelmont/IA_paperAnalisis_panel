@@ -42,11 +42,11 @@
     font-size: calc(var(--fs-value) *1.5);
     @extend %display-inline-block;
   }
-  &.next::after{
+  &.chevron-next::after{
     content: $icon-chevron-right;
     margin-left: calc(var(--fs-value) *.5);
   }
-  &.back::before{
+  &.arrow-back::before{
     content: $icon-arrow-left;
     margin-right: calc(var(--fs-value) *.5);
   }

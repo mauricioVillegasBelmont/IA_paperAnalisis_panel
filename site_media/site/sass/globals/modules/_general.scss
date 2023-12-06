@@ -5,38 +5,37 @@
   padding: .125rem;
   line-height: 1;
 }
-.testimonial{
-  .quote{
-    border-radius: var(--fs-value);
-    &::before{
-      @extend %icons-font;
-      display: block;
-      margin-right: .175rem;
-      font-size: calc(var(--fs-value) * 2.5);
-      content: $icon-quote;
-    }
-    &::after{
-      content: '';
-      border-width: .5rem;
-      border-color: transparent;
-      border-style: solid;
-      border-right-color: color_var('white');
-      border-bottom-color: color_var('white');
-      position: absolute;
-      display: block;
-      width: auto;
-      left: 0;
-      bottom: 0;
-      margin: auto;
-      transform-origin: center;
-      transform: rotate(45deg);
-      translate: 1.5rem 50%;
-    }
-  }
-  .testimonial-pict{
-    max-width: px_to_rem(60);
+.quote-mark{
+  &::before{
+    @extend %icons-font;
+    margin-right: .175rem;
+    font-size: calc(var(--fs-value) * 2.5);
+    content: $icon-quote;
   }
 }
+.testimonial{
+  &::after{
+    content: '';
+    border-width: .5rem;
+    border-color: transparent;
+    border-style: solid;
+    border-right-color: color_var('white');
+    border-bottom-color: color_var('white');
+    position: absolute;
+    display: block;
+    width: auto;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+    transform-origin: center;
+    transform: rotate(45deg);
+    translate: 1.5rem 50%;
+  }
+}
+.testimonial-pict{
+  max-width: px_to_rem(60);
+}
+
 .border-r1{
   border-radius: calc(var(--fs-value) / 4);
 }
@@ -60,4 +59,8 @@
   .parallax-section-item{
     z-index: 1;
   }
+}
+div.test{
+  @include aspect-ratio(1,1);
+  background-image: site_background_image('dog.jpg');
 }
