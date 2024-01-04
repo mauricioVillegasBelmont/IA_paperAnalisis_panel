@@ -14,6 +14,7 @@ import('core.helpers.patterns');
 class CollectorObject {
 
     private static $instance;
+    public $collection;
 
     private function __construct() {
         $this->collection = array();

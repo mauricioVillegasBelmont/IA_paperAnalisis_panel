@@ -3,7 +3,7 @@
 * Controlador para el ABM de reporting y el SessionHandler
 *
 */
-class Reporting extends Controller {
+class ReportingController extends Controller {
 
 	public function reporte($args){
 		SessionHandler()->check_state(2);
@@ -70,7 +70,7 @@ class Reporting extends Controller {
 		$n = (count($results) > 0) ? $results[0] : 0;
 		return ToolsHelper::clean_int($n['n']);
 	}
-	
+
 	private function __clean_colection($list = array(), $remove = array()){
 		if (empty($list)) return $list;
 		foreach ($list as $element) {

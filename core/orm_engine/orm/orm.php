@@ -17,6 +17,8 @@ import('core.orm_engine.dblayer');
 
 
 class ORM {
+    public $object;
+    public $parser;
 
     public function __construct($obj) {
         $this->object = $obj;

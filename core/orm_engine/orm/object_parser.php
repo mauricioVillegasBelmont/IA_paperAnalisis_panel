@@ -12,6 +12,15 @@ namespace ORM;
 
 
 class ObjectParser {
+    public $properties;
+    public $table;
+    public $fields;
+    public $values;
+    public $property_id;
+    public $string_fields;
+    public $substitution_string;
+    public $update_string;
+    public $insert_string;
 
     public function __construct($obj=NULL) {
         if(!is_null($obj)) {
@@ -26,7 +35,7 @@ class ObjectParser {
             $this->insert_string = $this->get_insert_string();
         }
     }
-    
+
     public function get_table_name($obj) {
         return strtolower(get_class($obj));
     }

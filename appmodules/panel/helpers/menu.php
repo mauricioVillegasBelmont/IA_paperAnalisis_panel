@@ -1,5 +1,16 @@
 <?php
 class MenuMaker {
+
+	public $menu_single_template;
+	public $menu_collapse_template;
+	public $menu_title_template;
+	public $submenu_item;
+	public $menu;
+	public $arr;
+	public $dict;
+	public $base_templates;
+
+
 	function __construct($arr = array(), $templ = 'appmodules/panel/views/templates/menu-items.html'){
 		$this->base_templates = file_get_contents(APP_DIR . $templ);
 
@@ -16,7 +27,7 @@ class MenuMaker {
 			"SUBMENU" => "",
 		);
 	}
-	
+
   function render_menu() {
     $menu = array();
     foreach ($this->arr as $item) {

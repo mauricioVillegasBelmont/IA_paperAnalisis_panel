@@ -18,35 +18,28 @@ class ReportingView {
 					),
 					"options" => array(
 						"head" => "Reporte {$type}",
+						"tipo_reporte" => $type,
 					),
 				);
 
 				switch ($type) {
 					case "reportes":
-						$table['buttons']['reporte'] = true;
+						$table['buttons']['ver_reporte_id'] = true;
 						break;
 					case "registro":
-						$table['buttons']['reporte'] = False;
-						$table['buttons']['descarga'] = False;
-						$table['buttons']['descarga_doc'] = True;
-						break;
 					default:
-						$table['buttons']['reporte'] = False;
-						$table['buttons']['descarga'] = False;
-						$table['buttons']['descarga_doc'] = True;
+						$table['buttons']['ver_reporte_id'] = False;
+						$table['buttons']['descarga_reporte_id'] = False;
+						$table['buttons']['descarga_doc'] = !(empty($data->list));;
 						break;
 				}
 
 				$str = CollectorTable($table)->get_table();
 
-				$dict = array('tipo_reporte' => $type);
 				$basetemplate = $GLOBALS['BASE_TEMPLATE_PANEL'];
 
 				$GLOBALS['DICT']['PNL_TITLE'] = "Reportes"; //set title page
 				$html = Template(NULL, $basetemplate)->show($str);
-				if ($type !== "votacion") $html = Template($html)->delete("votacion");
-				if ($type === "votacion") $html = Template($html)->render_regex("votoinfo", $data->votoinfo);
-				$html = Template($html)->render($dict);
 				print $html;
 		}
 
