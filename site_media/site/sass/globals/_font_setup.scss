@@ -11,19 +11,16 @@ $font-families: (
   'times':'"Times New Roman", Times, serif',
   'serif':'Arial, Helvetica, sans-serif',
 ) !default;
-@each $name, $Font in $font-families {
-  .ff-#{$name}{
-    font-family: #{$Font};
+@each $key, $Font in $font-families {
+  $font_class_name: to-lower-case($key);
+  $font_class_name: str-replace($font_class_name, ' ', $replace: '-');
+  .ff-#{$font_class_name}{
+    font-family: '#{$Font}';
   }
 }
-@for $i from 1 through 6{
-  .h#{$i}{
-    @extend %heading-format;
-  }
-}
+
 p,ul,ol,ul li, ol li,time,label,table td, table th,span,mark{
   &>*{
-    @extend %text-format;
     color: inherit;
   }
 }
@@ -45,7 +42,7 @@ ul,ol{
   &.tick{
     @extend %icon-list;
     li::before{
-      content: $icon-radio-empty-filled;
+      content: $icon-check-mark;
     }
   }
   &.chevron{
@@ -55,51 +52,120 @@ ul,ol{
     }
   }
 }
+.paragraph-wrapper a:not(.elipsis, .clip, .nowrap),
+a[href^="http://"]:not(.elipsis, .clip, .nowrap),
+a[href^="https://"]:not(.elipsis, .clip, .nowrap),
+a[target="_blank"]:not(.elipsis, .clip, .nowrap){
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    hyphens: auto;
+}
 
 
-.h1,.fs-xx{
-  --fs-value: #{px_to_rem(30)};
-  font-size: var(--fs-value);
-  @include media-breakpoint-up(lg){
-    --fs-value: #{px_to_rem(40)};
+.h1{
+  --fs-value: 6.25rem;
+  &-lg{
+    @include media-breakpoint-up(lg){
+      --fs-value: 6.25rem;
+    }
   }
 }
-.h2,.fs-xl{
-  --fs-value: #{px_to_rem(22)};
-  font-size: var(--fs-value);
-  @include media-breakpoint-up(lg){
-    --fs-value: #{px_to_rem(28)};
+.h2{
+  --fs-value: 3.4375rem;
+  &-lg{
+    @include media-breakpoint-up(lg){
+      --fs-value: 3.4375rem;
+    }
   }
 }
-.h3,.fs-lg{
-  --fs-value: #{px_to_rem(20)};
-  font-size: var(--fs-value);
-  @include media-breakpoint-up(lg){
-    --fs-value: #{px_to_rem(24)};
+.h3{
+  --fs-value: 2.8125rem;
+  &-lg{
+    @include media-breakpoint-up(lg){
+      --fs-value: 2.8125rem;
+    }
   }
 }
-.h4,.fs-md{
-  --fs-value: #{px_to_rem(18)};
-  font-size: var(--fs-value);
-  @include media-breakpoint-up(lg){
-    --fs-value: #{px_to_rem(20)};
+.h4{
+  --fs-value: 2.5rem;
+  &-lg{
+    @include media-breakpoint-up(lg){
+      --fs-value: 2.5rem;
+    }
   }
 }
+.h5{
+  --fs-value: 2.1875rem;
+  &-lg{
+    @include media-breakpoint-up(lg){
+      --fs-value: 2.1875rem;
+    }
+  }
+}
+.h6{
+  --fs-value: 1.4rem;
+  &-lg{
+    @include media-breakpoint-up(lg){
+      --fs-value: 1.4rem;
+    }
+  }
+}
+.display-1{
+  --fs-value:  4rem;
+  &-lg{
+    @include media-breakpoint-up(lg){
+      --fs-value: 5.125rem;
+    }
+  }
+}
+.display-2{
+  --fs-value:  3.125rem;
+  &-lg{
+    @include media-breakpoint-up(lg){
+      --fs-value: 5rem;
+    }
+  }
+}
+.fs-xl{
+  --fs-value: 1.875rem;
+  &-lg{
+    @include media-breakpoint-up(lg){
+      --fs-value: 1.875rem;
+    }
+  }
+}
+.fs-lg{
+  --fs-value: 1.5625rem;
+  &-lg{
+    @include media-breakpoint-up(lg){
+      --fs-value: 1.5625rem;
+    }
+  }
+}
+.fs-md{
+  --fs-value: 1.25rem;
+  &-lg{
+    @include media-breakpoint-up(lg){
+      --fs-value: 1.25rem;
+    }
+  }
+}
+
 
 .text,.fs-normal{
   --fs-value: #{px_to_rem(16)};
-  font-size: var(--fs-value);
 }
 .fs-small{
   --fs-value: calc(#{px_to_rem(16)} * .875);
-  font-size: var(--fs-value);
 }
 .fs-extrasmall{
   --fs-value: calc(#{px_to_rem(16)} * .75);;
-  font-size: var(--fs-value);
 }
-sub{vertical-align: sub;}
-sup{vertical-align: super;}
+sub{ vertical-align: sub;}
+sup{ vertical-align: super;}
 .text-normal{
   font-weight: normal;
 }
@@ -148,11 +214,17 @@ $font_weight: false !default;
     .fw-#{(100 * $i)}{@extend %font-#{$i*100};}
   }
 }
+.fw-bold{
+  font-weight: bold;
+}
+.fw-bolder{
+  font-weight: bolder;
+}
 .text-center{@extend %text-center;}
 .text-right{@extend %text-right;}
 .text-left{@extend %text-left;}
 .text-justify{@extend %text-justify;}
-$text_justify_utilities:false !default;
+$text_justify_utilities: false !default;
 @if $text_justify_utilities{
   @include text-justify-utilities();
 }

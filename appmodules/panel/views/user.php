@@ -19,7 +19,7 @@ class UserView {
 
     public function listar($coleccion=array()) {
         foreach($coleccion as &$obj) {
-            $obj->admin = ($obj->level == 1) ? "<i class='fa fa-meh'></i>" : "";
+            $obj->admin = ($obj->level == 1) ? '<i class="fa-solid fa-user-gear"></i>' : '<i class="fa-solid fa-user"></i>';
         }
 
 

@@ -30,7 +30,7 @@
 .input-text,.input-select{
   @extend %display-block;
   @extend %width-100;
-  @extend %text-format;
+  @extend %font-format;
   @extend %input-format;
 
 }
@@ -56,12 +56,17 @@ select{
     margin: auto;
   }
   i::after{
-    content: $icon-chekbox;
     @extend %icons-font;
+    content: $icon-chekbox;
     display: block;
   }
-  input[type="checkbox"]:checked + .tick::after,input[type="radio"]:checked + .tick::after{
+  input[type="checkbox"]:checked + i.check-mark::after,
+  input[type="radio"]:checked + i.check-mark::after{
     content: $icon-chekbox-checked;
+  }
+  input[type="checkbox"]:checked + .check-mark.img-tick,
+  input[type="radio"]:checked + .check-mark.img-tick{
+    background-image: url('#{$CSS_IMAGES_PATH}/btn/check-mark.svg');
   }
 }
 .input-hidden{

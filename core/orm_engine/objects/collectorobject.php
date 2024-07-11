@@ -14,13 +14,14 @@ import('core.helpers.patterns');
 class CollectorObject {
 
     private static $instance;
+    public $collection;
 
     private function __construct() {
         $this->collection = array();
     }
 
     private function add_object($obj) {
-        $this->collection[] = $obj;
+        $this->collection[] = json_decode(json_encode($obj));
     }
 
     public static function get($class_name='Anonymous') {

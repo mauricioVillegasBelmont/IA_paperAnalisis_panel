@@ -14,6 +14,11 @@
     );
 */
 class CollectorTable {
+    public $collection;
+    public $modulo;
+    public $modelo;
+    public $action;
+    public $table;
 
     public $options = array(
         "lang"=>   CVW_LANG,
@@ -31,7 +36,7 @@ class CollectorTable {
     );
 
     function __construct(
-        $table = array(
+        $_table = array(
             "collection" => array(),
             "modulo" => '',
             "modelo" => '',
@@ -40,18 +45,16 @@ class CollectorTable {
             "template" => '')
         ) {
 
-        $collection = self::__colection_sanitizer($table['collection']);
+        $this->collection = self::__colection_sanitizer($_table['collection']);
+        $this->modulo = "{$_table['modulo']}";
+        $this->modelo = "{$_table['modelo']}";
+        $this->action = "/{$_table['modulo']}/{$_table['modelo']}";
 
-        $this->collection = $collection;//$table['collection'];
-        $this->modulo = "{$table['modulo']}";
-        $this->modelo = "{$table['modelo']}";
-        $this->action = "/{$table['modulo']}/{$table['modelo']}";
-
-        $this->table = empty($table['template']) ? file_get_contents(APP_DIR . "common/plugins/collectortable/templates/default.html") : file_get_contents( APP_DIR . $table['template'] );
+        $this->table = empty($_table['template']) ? file_get_contents(APP_DIR . "common/plugins/collectortable/templates/default.html") : file_get_contents( APP_DIR . $_table['template'] );
 
 
-        if (!empty($table['buttons'])) $this->buttons = array_merge($this->buttons, $table['buttons']);
-        if (!empty($table['options'])) $this->options = array_merge($this->options,$table['options']);
+        if (!empty($_table['buttons'])) $this->buttons = array_merge($this->buttons, $_table['buttons']);
+        if (!empty($_table['options'])) $this->options = array_merge($this->options,$_table['options']);
         $this->set_buttons();
     }
 

@@ -4,6 +4,12 @@
 */
 
 class Site_Data extends StandardObject {
+	public $site_data_id;
+	public $name;
+	public $value;
+	public $status;
+	public $fecha;
+
 	public function __construct() {
 	    $this->site_data_id = 0;
 	    $this->name = '';

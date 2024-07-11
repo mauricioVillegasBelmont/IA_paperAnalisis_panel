@@ -5,6 +5,15 @@
 
 
 class User extends StandardObject {
+    public $user_id;
+    public $name;
+    public $lastname;
+    public $user;
+    public $email;
+    public $pwd;
+    public $level;
+    public $last_login;
+    public $active;
 
     public function __construct() {
         $this->user_id = 0;
@@ -16,7 +25,7 @@ class User extends StandardObject {
         $this->level = 0;
         $this->last_login = '';
     }
-    
+
     function save() {
         if($this->user_id == 0){
             $fecha = date("Y-m-d H:i:s", time());
@@ -24,7 +33,7 @@ class User extends StandardObject {
             $this->last_login = $fecha;
             $this->active = True;
         }
-        parent::save();    
+        parent::save();
     }
 
     function exists_user(){
