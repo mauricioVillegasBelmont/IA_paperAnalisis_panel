@@ -30,7 +30,7 @@ class FrontController {
     # Si el enrutamiento MVC estándar falla, efectúa una llamada recursiva
     # que acciona el enrutador personalizado
     public static function start($rerouting=False) {
-        list(self::$modulo, self::$modelo, self::$recurso, self::$arg, self::$api) = ApplicationHandler::handler(True);
+        list(self::$modulo, self::$modelo, self::$recurso, self::$arg, self::$api) = ApplicationHandler::handler($rerouting);
         if(self::$api && !API_ENABLED) HTTPHelper::return_api_not_enabled();
         self::check_access();
 

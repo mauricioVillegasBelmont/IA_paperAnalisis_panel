@@ -108,7 +108,7 @@ class ApplicationHandler {
                 }
             }
         }
-        if(!$pass) HTTPHelper::go(DEFAULT_VIEW);
+        //if(!$pass) HTTPHelper::go(DEFAULT_VIEW);
     }
 
 }

@@ -20,6 +20,9 @@ class Pattern {
     * @return object Objeto fabricado
     */
     public static function factory($cls, $id_value, $idname='') {
+        if(!class_exists($cls)){
+            return NULL;
+        }
         $objid = ($idname) ? $idname : strtolower($cls) . "_id";
         $obj = new $cls();
         $obj->$objid = $id_value;
