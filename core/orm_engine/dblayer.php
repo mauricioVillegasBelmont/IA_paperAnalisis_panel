@@ -33,7 +33,10 @@ class DBLayer {
         }
 
         $query = $pdo->prepare($sql);
-        for($i=0; $i<count($data); $i++) $query->bindParam($i+1, $data[$i]);
+        for($i=0; $i<count($data); $i++) {
+            $type = self::get_PDO_type($data[$i]);
+            $query->bindParam($i+1, $data[$i], $type );
+        }
         $query->execute();
 
         $errors = $query->errorInfo();
@@ -50,6 +53,12 @@ class DBLayer {
             self::$results = $query->fetchAll(PDO::FETCH_ASSOC);
         }
         return self::$results;
+    }
+    private static function get_PDO_type($value) {
+        if (is_int($value))  return PDO::PARAM_INT;
+        if (is_bool($value)) return PDO::PARAM_BOOL;
+        if (is_null($value)) return PDO::PARAM_NULL;
+        return PDO::PARAM_STR;
     }
 
     private static function verify_constatnts() {
@@ -154,7 +163,7 @@ class DBLayerErrorHandler extends ErrorHandler {
             $m2t_str = DevToolsHelper::get_diff_to_string($clsvars, $fields);
             $o2t_str = DevToolsHelper::get_diff_to_string($objvars, $fields);
         }
-        
+
         return get_defined_vars();
     }
 
