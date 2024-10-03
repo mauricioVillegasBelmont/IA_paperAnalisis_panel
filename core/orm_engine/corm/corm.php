@@ -15,6 +15,7 @@ import('core.orm_engine.dblayer');
 
 
 class CORM {
+    public $parser;
 
     public function __construct($compuesto=NULL, $compositor='') {
         $this->parser = new CORM\ObjectParser($compuesto, $compositor);

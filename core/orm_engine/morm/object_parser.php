@@ -4,6 +4,9 @@ namespace MORM;
 
 
 class ObjectParser {
+    public $table;
+    public $compuesto_id;
+    public $compositor_id;
 
     public function __construct($obj=NULL) {
         if(!is_null($obj)) {

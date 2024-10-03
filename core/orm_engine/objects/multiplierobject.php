@@ -14,13 +14,16 @@ import('core.orm_engine.morm.morm');
 
 
 class MultiplierObject {
+    public $rel_id;
+    public $compuesto;
+    public $compositor;
+    public $rel;
 
     public function __construct($compuesto, $type, $compositor=NULL) {
         $this->rel_id = 0;
         $this->compuesto = Pattern::composite($type, $compuesto);
         $this->compositor = $compositor;
         $this->rel = 1;
-        
     }
 
     private function setrel() {
@@ -41,13 +44,13 @@ class MultiplierObject {
                 $this->setrel();
         }
     }
-    
+
     public function save($destroy=True) {
         if($destroy) $this->destroy();
         $this->rel_id = MORM($this)->create();
         $this->setrel();
     }
-    
+
     public function destroy() {
         MORM($this)->delete();
     }

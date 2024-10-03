@@ -13,6 +13,8 @@ const DH_FORMAT_OBJECT = 'object';
 
 
 class DataHandler {
+    public $table;
+    public $format;
 
     public function __construct($table='', $format='') {
         $this->table = $table;

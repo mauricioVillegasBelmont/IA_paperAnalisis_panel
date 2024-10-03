@@ -1,6 +1,8 @@
 <?php
 
 class Logger {
+    public $mode;
+    public $file;
 
     public function __construct() {
         $this->mode = 3;

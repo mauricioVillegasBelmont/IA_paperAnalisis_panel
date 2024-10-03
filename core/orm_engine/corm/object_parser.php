@@ -12,6 +12,14 @@ namespace CORM;
 
 
 class ObjectParser {
+    public $compositor;
+    public $obj_compuesto;
+    public $compuesto;
+    public $table;
+    public $compuesto_id;
+    public $coleccion;
+    public $insert_string;
+    public $insert_values;
 
     public function __construct($compuesto=NULL, $compositor='') {
         $this->compositor = strtolower($compositor);

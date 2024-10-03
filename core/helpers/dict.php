@@ -1,6 +1,6 @@
 <?php
 /**
-* Crea un objeto diccionario iterando recursivamente sobre las propiedades del 
+* Crea un objeto diccionario iterando recursivamente sobre las propiedades del
 * objeto pasado como parámetro.
 *
 * @package      PymEngine
@@ -43,7 +43,7 @@ class Dict {
 
     /**
     * Convierte al array de objetos pasado como parámetro, en un array de
-    * objetos para utilizar en las sustituciones de una lista desplegable de 
+    * objetos para utilizar en las sustituciones de una lista desplegable de
     * formulario, mediante el plug-in WebForm
     *
     * @param  array $collection colección de objetos a preparar
@@ -83,6 +83,7 @@ class Dict {
 * Fabrica objetos diccionarios en forma recursiva sobre una colección de objetos
 */
 class DictCollection {
+    public $collection;
 
     public function __construct() {
         $this->collection = array();

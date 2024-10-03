@@ -1,6 +1,10 @@
 <?php
 
 abstract class BranchedObject extends StandardObject {
+    public $id_name;
+    public $denomination;
+    public $state;
+    public $collection_name;
 
     public function __construct() {
         extract($this->set_names());
