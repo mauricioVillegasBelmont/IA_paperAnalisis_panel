@@ -16,6 +16,14 @@ class ToolsHelper {
         return intval(ToolsHelper::clean_str($i));
     }
 
+    static function clean_str_decode( $s ){
+      $s = preg_replace('!\s+!', ' ', trim($s));
+      $s = str_replace(array("\t","\r\n","\n","\0","\v"),'', $s);
+      $s = html_entity_decode($s, ENT_QUOTES | ENT_HTML401, "UTF-8" );
+      return $s;
+    }
+
+
     static function strlen( $s, $min , $max=0 ) {
         $ok = true;
         $l = mb_strlen($s, "UTF-8");
