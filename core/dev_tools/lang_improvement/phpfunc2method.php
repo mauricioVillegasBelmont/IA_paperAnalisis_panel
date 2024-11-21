@@ -1,9 +1,9 @@
 <?php
 
 /*
-    Func2Method - Fase experimental 
+    Func2Method - Fase experimental
     (
-    Desactivar: 
+    Desactivar:
         No necesita ser desactivada ya que solo funciona si se la invoca
     )
 
@@ -20,6 +20,7 @@
 */
 
 class PHP {
+    public $builtin_functions;
 
     function __construct() {
         $funcs = get_defined_functions();

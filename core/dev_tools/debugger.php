@@ -1,6 +1,7 @@
 <?php
 
 class Debugger {
+    public $backtrace;
 
     function __construct($backtrace=true) {
         $this->backtrace = $backtrace;

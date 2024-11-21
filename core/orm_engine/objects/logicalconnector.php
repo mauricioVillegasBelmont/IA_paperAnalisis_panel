@@ -16,6 +16,9 @@ import('core.orm_engine.corm.corm');
 class LogicalConnector {
 
     protected static $composername;
+    public $connector_id;
+    public $compuesto;
+    public $collection;
 
     public function __construct($obj=NULL, $compositor='') {
         self::$composername = strtolower($compositor);
@@ -31,10 +34,10 @@ class LogicalConnector {
 
     public function save() {
         $this->destroy();
-        if(count($this->collection) > 0) CORM($this->compuesto, 
+        if(count($this->collection) > 0) CORM($this->compuesto,
             self::$composername)->create();
     }
-    
+
     public function get() {
         $results = CORM($this->compuesto, self::$composername)->read();
         foreach($results as $field) {

@@ -4,6 +4,8 @@ import('core.orm_engine.morm.helper');
 
 
 class MORM {
+    public $object;
+    public $parser;
 
     public function __construct($obj) {
         $this->object = $obj;
