@@ -11,7 +11,7 @@ class PageController extends Controller {
     # ==========================================================================
 
     public function default() {
-        $this->view->show_home();
+        $this->view->show_page();
     }
 
     # ==========================================================================
