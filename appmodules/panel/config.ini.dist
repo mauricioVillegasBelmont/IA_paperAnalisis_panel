@@ -1,3 +1,6 @@
+DEEPSEEK_APIKEY = "API_KEY"
+DEEPSEEK_BASEURL = "https://api.deepseek.com/chat/completions"
+
 PANEL_ASSETS = '/site_media/panel'
 PNL_TITLE = "Panel Sitio"
 PNL_COPYRIGHT_TXT = "develop by PymEngine | Copyright &copy; pymeweb.mx "

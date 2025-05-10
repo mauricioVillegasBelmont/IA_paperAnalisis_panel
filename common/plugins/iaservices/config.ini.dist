@@ -1,0 +1,2 @@
+DEEPSEEK_APIKEY = "sk-d9d115f92c644f368647648087e680d9"
+DEEPSEEK_BASEURL = "https://api.deepseek.com/chat/completions"

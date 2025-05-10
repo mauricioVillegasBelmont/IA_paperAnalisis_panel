@@ -3,6 +3,9 @@
 * Carga de módulo de panel para Pymeweb Engine
 */
 
+import('appmodules.panel.views.views');
+
+
 import('appmodules.panel.helpers.setup');
 import('appmodules.panel.helpers.tools');
 import('appmodules.panel.helpers.menu');
@@ -21,6 +24,19 @@ import('appmodules.panel.views.user');
 import('appmodules.panel.models.dashboard');
 import('appmodules.panel.views.dashboard');
 
+/* paper */
+import('appmodules.panel.models.paper');
+import('appmodules.panel.views.paper');
+
+
+
+/* reference */
+import('appmodules.panel.models.reference');
+/* label */
+import('appmodules.panel.models.label');
+
+
+
 /* reporting */
 // import('appmodules.panel.models.reporting');
 // import('appmodules.panel.views.reporting');
@@ -30,4 +46,5 @@ import('appmodules.panel.models.site_data');
 
 
 if(SETUP) import('appmodules.panel.helpers.setup');
+// if(SETUP) SetupHelper::create_models();
 ?>

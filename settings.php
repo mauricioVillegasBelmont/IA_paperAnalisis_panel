@@ -35,7 +35,7 @@ ini_set('include_path', APP_DIR);
 ini_set('session.gc_maxlifetime', SESSION_LIFE_TIME);
 ini_set('session.cookie_lifetime', SESSION_LIFE_TIME);
 ini_set('session.cache_expire', 7200);
-date_default_timezone_set('Mexico/General');
+date_default_timezone_set('America/Mexico_City');
 
 if(!PRODUCTION) {
     ini_set('error_reporting', E_ALL | E_NOTICE | E_STRICT);

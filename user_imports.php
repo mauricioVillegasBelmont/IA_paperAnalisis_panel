@@ -4,23 +4,27 @@
 $dashboard_menu = array(
 	"TYPE" => "MENU-ITEM",
 	"TITLE" => "Dashboard",
-	"HREF" => WEB_DIR. 'dashboard',
+	"HREF" => '/dashboard',
 	"ICON" => "<i class='fa fa-tachometer fa-fw' aria-hidden='true'></i>"
 );
-$reporte_menu = array(
+$papers = array(
 	"TYPE" => "MENU-ITEM",
-	"TITLE" => "Reportes",
+	"TITLE" => "Papers",
 	"HREF" => "#",
 	"ICON" => "<i class=\"fa fa-line-chart\" aria-hidden=\"true\"></i>",
 	"SUBMENU" => array(
 		array(
-			"TITLE" => "Registro",
-			"HREF" => WEB_DIR.'panel/reporting/reporte/registro',
+			"TITLE" => "Paper",
+			"HREF" => '/panel/paper/reporte',
 		),
-		array(
-			"TITLE" => "Game",
-			"HREF" => WEB_DIR . "panel/reporting/reporte/game"
-		),
+		// array(
+		// 	"TITLE" => "Label",
+		// 	"HREF" =>  "/panel/paper/label"
+		// ),
+		// array(
+		// 	"TITLE" => "References",
+		// 	"HREF" =>  "/panel/paper/reference"
+		// ),
 	),
 );
 $user_menu = array(
@@ -31,11 +35,11 @@ $user_menu = array(
 	"SUBMENU" => array(
 		array(
 			"TITLE" => "Ver Todos",
-			"HREF" => WEB_DIR . "panel/user/listar"
+			"HREF" => WEB_DIR . "/panel/user/listar"
 		),
 		array(
 			"TITLE" => "Agregar",
-			"HREF" => WEB_DIR . "panel/user/agregar"
+			"HREF" => WEB_DIR . "/panel/user/agregar"
 		),
 	),
 );
@@ -57,13 +61,13 @@ if(isset($_SESSION['level']) && $_SESSION['level']>0){
 			case 1:
 				$menu_arr[] = 'Administrador';
 				$menu_arr[] = $dashboard_menu;
-				// $menu_arr[] = $reporte_menu;
+				$menu_arr[] = $papers;
 				$menu_arr[] = $user_menu;
 				break;
 			case 2:
 				$menu_arr[] = 'Colaborador';
 				$menu_arr[] = $dashboard_menu;
-				$menu_arr[] = $reporte_menu;
+				$menu_arr[] = $papers;
 				break;
 			default:
 			break;

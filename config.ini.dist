@@ -83,6 +83,8 @@ SECURITY_TRACK = true ; Para habilitar codigos de trackeo como UTM
 
 
 [PLUGINS]
+iaservices = true        ; common/plugins/iaservices
+python_helpers = true    ; common/plugins/python_helpers
 collectortable = true ; common/plugins/collectortable
 collectorviewer = false ; common/plugins/collectorviewver
 securitylayer = true   ; common/plugins/securitylayer

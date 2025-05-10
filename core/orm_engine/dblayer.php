@@ -20,7 +20,7 @@ import('core.dev_tools.helper');
 class DBLayer {
 
     public static $db;
-    public static $results = True;
+    public static $results;
 
 
     public static function execute($sql, $data=array(), $db=DB_NAME) {

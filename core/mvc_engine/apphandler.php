@@ -98,6 +98,7 @@ class ApplicationHandler {
                 }
             }
             //END FIX TRACK URL
+            if(!isset($urls)) $urls = array();
             foreach($urls as $regex=>$to_url) {
                 preg_match($regex, $resource, $matches);
                 if(isset($matches[0])) {

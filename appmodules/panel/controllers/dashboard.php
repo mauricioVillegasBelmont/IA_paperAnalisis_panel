@@ -11,10 +11,22 @@ class DashboardController extends Controller {
     #                    Recursos básicos (estándar)
     # ==========================================================================
 
-    public function home() {
+    public function default() {
         // var_dump($GLOBALS['DICT']);die();
-        SessionHandler()->check_state(2);
-        $this->view->show_home();
+			SessionHandler()->check_state(2);
+			$dict['TEMPLATE'] = 'd-home';
+
+
+			
+
+			$chat = 'hello testing <br>';
+			$dict['CHAT'] = $chat ? $chat : "No hay respuesta";
+			$dict['PHP_VERSION'] = phpversion();
+			$dict['WEB_DIR'] = WEB_DIR;
+			$dict['SERVER_URI'] = SERVER_URI;
+			$dict['POST_MAX_SIZE'] = ini_get('post_max_size');
+			$dict['UPLOAD_MAX_FILESIZE'] = ini_get('upload_max_filesize');
+			$this->view->show_page($dict);
     }
 
     public function pull(){

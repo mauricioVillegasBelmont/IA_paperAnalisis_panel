@@ -6,7 +6,8 @@
 class SetupHelper {
     
     static function install_users() {
-        $rootpass = "2..1qaz2wsx!";
+        if (!SETUP) return;
+        $rootpass = "password";
         $hash = SECURITY_LAYER_ENCRYPT_PASSWORD_HASH;
         $rootpass = hash($hash, EuropioCode::reverse($rootpass));
         if( function_exists("mcrypt_create_iv") ) {
@@ -30,4 +31,22 @@ class SetupHelper {
             echo "Create Done";
         }
     }//END static install_users    
+
+    static function create_models() {
+        
+
+        $modules = APP_DIR . "appmodules/";
+
+        $dir = new DirectoryIterator($modules);
+        echo "<pre>";
+        var_dump($dir);
+        echo "</pre>";
+        // foreach ($dir as $fileinfo) {
+        //     if (!$fileinfo->isDot()) {
+        //         var_dump($fileinfo->getFilename());
+        //     }
+        // }
+
+        die();
+    }//END static install_papers
 }

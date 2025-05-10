@@ -36,7 +36,7 @@ class FileUploader{
 			'webp' => 'image/webp',
 			'pdf' => 'application/pdf'
 		);
-		$uploaddir = $_SERVER['DOCUMENT_ROOT'].$uploaddir;
+		$uploaddir = APP_DIR.$uploaddir;
 		$ext = $_FILES[$name]["name"];
 		$ext = explode('.', $ext);
 		$ext = end( $ext );
@@ -48,12 +48,12 @@ class FileUploader{
 			die();
 		}
 
-		$nameFile = $prefix.'__'.date($date_format)."--".ToolsHelper::randHash($digits).".".$ext ;
-		while( file_exists( $uploaddir.$nameFile) ){
-			$nameFile = $prefix.'__'.date($date_format)."--".ToolsHelper::randHash($digits).".".$ext ;
+		$fileName = $prefix.'__'.date($date_format)."--".ToolsHelper::randHash($digits).".".$ext ;
+		while( file_exists( $uploaddir.$fileName) ){
+			$fileName = $prefix.'__'.date($date_format)."--".ToolsHelper::randHash($digits).".".$ext ;
 		}
 
-		if( !move_uploaded_file($_FILES[$name]["tmp_name"], $uploaddir.$nameFile)){
+		if( !move_uploaded_file($_FILES[$name]["tmp_name"], $uploaddir.$fileName)){
 			$phpFileUploadErrors = array(
 					0 => 'No hay ningún error, el archivo se cargó correctamente',
 					1 => 'El archivo cargado excede la directiva upload_max_filesize en php.ini',
@@ -64,12 +64,13 @@ class FileUploader{
 					7 => 'No se pudo escribir el archivo en el disco',
 					8 => 'Una extensión PHP detuvo la carga del archivo',
 			);
-
-			$_SESSION["error_msg"] = $phpFileUploadErrors[$_FILES[$name]["error"]];
-			HTTPHelper::go("/registro");
-			die();
+			// $_SESSION["error_msg"] = $phpFileUploadErrors[$_FILES[$name]["error"]];
+			// HTTPHelper::go("/registro");
+			// die();
+			$error = $_FILES[$name]["error"];
+			throw new Exception($phpFileUploadErrors[$error]??'Error desconocido');
 		}
-		return $nameFile;
+		return $fileName;
 	}
 
 }

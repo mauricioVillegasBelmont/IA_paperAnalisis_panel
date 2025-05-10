@@ -14,6 +14,8 @@ class User extends StandardObject {
     public $level;
     public $last_login;
     public $active;
+    public $created;
+    public $salt;
 
     public function __construct() {
         $this->user_id = 0;

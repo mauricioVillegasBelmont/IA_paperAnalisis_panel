@@ -124,6 +124,7 @@ class CollectorTable {
         $this->render_tdcols();
         $this->alter_collection();
         $this->table = Template($this->table)->render_regex('listado', $this->collection);
+        
     }
 
     function get_table() {

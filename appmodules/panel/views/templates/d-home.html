@@ -1,6 +1,25 @@
-<p>Aqui algunas opciones rapidas.</p>
-<ul class="list-group">
-    <!--admin-->
-    <li class="list-group-item">- Actualizar sitio::: <a href="/panel/dashboard/git_status" class="btn btn-dark d-inline-block">GIT STATUS</a></li>
-    <!--/admin-->
-</ul>
+<div class="container">
+    <div class="row">
+        <div class="col-12 py-3">
+            <h1>Aqui algunas opciones rapidas.</h1>
+            <ul class="list-group">
+                <!--admin-->
+                <li class="list-group-item">- Actualizar sitio::: <a href="/panel/dashboard/git_status" class="btn btn-dark d-inline-block">GIT STATUS</a></li>
+                <!--/admin-->
+            </ul>
+        </div>
+        <div class="col-4 py-3">
+            <p>SERVER_URI: {SERVER_URI}</p>
+            <p>Current PHP version: {PHP_VERSION}</p>
+            <p>Post max size: {POST_MAX_SIZE}</p>
+            <p>Upload max filesize: {UPLOAD_MAX_FILESIZE}</p>
+        </div>
+        <div class="col-8 py-3">
+            <div class="border-1">
+                <pre>
+                    {CHAT}
+                </pre>
+            </div>
+        </div>
+    </div>
+</div>

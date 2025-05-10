@@ -192,4 +192,16 @@ class ToolsHelper {
       $a[$indexes[$perm]] = $swap;
     }
   }
+  /**
+   * Sanitize a string array
+   * @param array $arr Array of strings
+   * @return array Sanitized array
+   */
+  public static function sanitize_strings_arr($arr = array())
+  {
+    $function = function ($v) {
+      return ToolsHelper::clean_str($v);
+    };
+    return array_map($function, $arr);
+  }
 }

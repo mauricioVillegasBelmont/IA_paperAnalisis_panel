@@ -64,9 +64,49 @@ INSERT INTO `user` (`user_id`, `name`, `lastname`, `user`, `email`, `pwd`, `salt
 (1, 'Angel', 'Trejo', 'root', 'ing.link.316@gmail.com', '039b1a63d4b74137adb6555397fb02462b114f4c46b8f47dba8e48eff67136ca', 0xf130a9c6ac02676b9d75f8ae5e2d68ba5f0e265d9edc7e5d77b1cb6b77b8aee591ad7be221a1bb4b39950e585cb548475e2f855307078e73eb4d2962f33258e0, 1, NULL, '2021-09-01 12:52:56', 1),
 (2, 'Test', 'qwe', 'develop', 'desarrollo@losdeidea.com.mx', '6eb32b2ea22aaa3bcdea24a6023b7eb6395f2a6f4bdb3ef0dbe028d6ec69e0ff', 0x364ad8fd4749a8708711d6195ce404afd8d9e026241d99b87d0d5a23b4a35927aaf6b886dc80c434b0401426f91282f6f14f9521b02e97ac170f8f6429259aa8, 2, '2021-07-20 01:02:39', '2021-07-23 17:55:25', 1);
 
+
 --
--- Índices para tablas volcadas
+-- Estructura de tabla para la tabla `paper`
 --
+DROP TABLE IF EXISTS `paper`;
+CREATE TABLE `paper` (
+  `paper_id` int(11) NOT NULL,
+  `title` varchar(1024) NOT NULL,
+  `authors` text NOT NULL,
+  `labels` text NOT NULL,
+  `abstract` text NOT NULL,
+  `metodology` text NOT NULL,
+  `conclusions` text NOT NULL,
+  `bibliography` text NOT NULL,
+  `created` datetime DEFAULT CURRENT_TIMESTAMP;,
+  `path` varchar(256) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Estructura de tabla para la tabla `paper`
+--
+DROP TABLE IF EXISTS `label`;
+CREATE TABLE `label` (
+  `label_id` int(11) NOT NULL,
+  `name` varchar(256) NOT NULL,
+  `created` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+--
+-- Estructura de tabla para la tabla `paper`
+--
+DROP TABLE IF EXISTS `bibliography`;
+CREATE TABLE `bibliography` (
+  `bibliography_id` int(11) NOT NULL,
+  `name` varchar(256) NOT NULL,
+  `autors` VARCHAR(255),
+  `type` ENUM('libro', 'articulo_revista', 'articulo_periodico', 'fuente_web', 'tesis', 'informe', 'capitulo_libro', 'ley', 'norma', 'otros') NOT NULL,
+  `created` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+
+
 
 --
 -- Indices de la tabla `site_data`
@@ -79,6 +119,22 @@ ALTER TABLE `site_data`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`user_id`);
+
+--
+-- Indices de la tabla `paper`
+--
+ALTER TABLE `paper`
+  ADD PRIMARY KEY (`paper_id`);
+--
+-- Indices de la tabla `label`
+--
+ALTER TABLE `label`
+  ADD PRIMARY KEY (`label_id`);
+--
+-- Indices de la tabla `bibliography`
+--
+ALTER TABLE `bibliography`
+  ADD PRIMARY KEY (`bibliography_id`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -96,7 +152,24 @@ ALTER TABLE `site_data`
 ALTER TABLE `user`
   MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
+--
+-- AUTO_INCREMENT de la tabla `paper`
+--
+ALTER TABLE `paper`
+  MODIFY `paper_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `label`
+--
+ALTER TABLE `label`
+  MODIFY `label_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `bibliography`
+--
+ALTER TABLE `bibliography`
+  MODIFY `bibliography_id` int(11) NOT NULL AUTO_INCREMENT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+

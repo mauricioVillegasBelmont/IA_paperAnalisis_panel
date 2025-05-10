@@ -19,6 +19,9 @@ abstract class StandardObject extends ObjectEE {
     function save() {
         @$this->__tolog();
         $id = ORM\ObjectParser()->get_id($this);
+        // if(!$this->$id) {
+        //     var_dump(ORM($this));
+        // }
         (!$this->$id) ? $this->$id = ORM($this)->create() : ORM($this)->update();
     }
 

@@ -1,7 +1,7 @@
 <?php
 class TemplateHeplpers{
-  public static function get_template( $template_file ){
-    $file = APP_DIR . "appmodules/site/views/templates/" . $template_file;
+  public static function get_template( $template_file, $module = 'site' ){
+    $file = APP_DIR . "appmodules/". $module."/views/templates/" . $template_file;
     if (!file_exists($file)) return '';
     return file_get_contents($file);
   }
