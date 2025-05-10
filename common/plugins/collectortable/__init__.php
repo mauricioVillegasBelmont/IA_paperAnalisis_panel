@@ -27,14 +27,14 @@ class CollectorTable {
         "order"=>  CV_DEFAULT_ORDERDIRECTION,  # Tipo de orden [asc|desc]
         "length"=> CV_DEFAULT_LENGTH,          # Cantidad de registros a mostrar por página
         "addnew"=> CV_DEFAULT_LINK_ADDNEW,     # Texto del enlace para agregar un nuevo elemento
-        "head"=>   CV_DEFAULT_TABLE_TITLE,     # Título de la tabla
+        "title"=>   CV_DEFAULT_TABLE_TITLE,     # Título de la tabla
     );
     public $buttons = array(
         'ver' => true,
         'editar' => false,
         'eliminar' => false
     );
-
+    
     function __construct(
         $_table = array(
             "collection" => array(),
@@ -60,7 +60,7 @@ class CollectorTable {
 
     function set_buttons() {
         $func = self::__set_render_funcname();
-        foreach($this->buttons as $tipoboton=>$mostrar) {
+        foreach($this->buttons as $tipoboton=>$mostrar) {  
             if(!$mostrar) {
                 $fuente1 = Template($this->table)->$func($tipoboton, False);
                 $fuente2 = Template($this->table)->$func("th{$tipoboton}", False);
@@ -136,6 +136,7 @@ class CollectorTable {
             'modelo'  => $this->modelo,
         );
         $dict = array_merge($dict, $this->options);
+        
         $this->table = Template($this->table)->render($dict);
         return $this->table;
     }

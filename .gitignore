@@ -3,6 +3,7 @@
 /common/libs/vendor/*
 /site_media/uploads/*
 config.ini
+/site_media/public/queue_papers/*
 #CodeKit
 config.codekit
 .codekit-cache/*
@@ -38,6 +39,7 @@ $RECYCLE.BIN/
 !.gitignore
 !.htaccess
 !.htpasswd
+!.gitkeep
 *~
 !/.ssh
 # Mac OS X
@@ -60,3 +62,5 @@ Icon
 .code-workspace
 *.vscode
 *.code-workspace
+
+

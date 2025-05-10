@@ -30,6 +30,10 @@ import('appmodules.panel.views.paper');
 
 
 
+/* document_pdf */
+import('appmodules.panel.models.document_pdf');
+import('appmodules.panel.views.document_pdf');
+
 /* reference */
 import('appmodules.panel.models.reference');
 /* label */

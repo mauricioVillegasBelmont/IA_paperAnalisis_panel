@@ -60,22 +60,52 @@ class Paper  extends StandardObject {
   }
 
   public function set_values($values){
-    $this->title = ToolsHelper::clean_str($values["title"]);
-    $this->authors = serialize(  
+    $values = $this->sanitize_values($values);
+    $this->title = $values["title"];
+    $this->authors = $values["authors"];
+    $this->labels = $values["labels"];
+    $this->abstract = $values["abstract"];
+    $this->metodology = $values["metodology"];
+    $this->conclusions = $values["conclusions"];
+    $this->bibliography = $values["bibliography"];
+    $this->document = $values["document"];
+    $this->path = $values["path"];
+  }
+  public function sanitize_values($values){
+    $values["title"] = $values["title"]?ToolsHelper::clean_str($values["title"]):"";
+    $values["authors"] = $values["authors"]?serialize(  
       ToolsHelper::sanitize_strings_arr($values["authors"])
-    );
-    $this->labels = serialize(  
+    ):"";
+    $values["labels"] = $values["labels"]?serialize(  
       ToolsHelper::sanitize_strings_arr($values["labels"])
-    );
-    $this->abstract = ToolsHelper::clean_str($values["abstract"]);
-    $this->metodology = ToolsHelper::clean_str($values["metodology"]);
-    $this->conclusions = ToolsHelper::clean_str($values["conclusions"]);
-    $this->bibliography = serialize(
-      ToolsHelper::sanitize_strings_arr($values["references"])
-    );
-    $this->document = ToolsHelper::clean_str($values["document"]);
-    
-    $this->path = ToolsHelper::clean_str($values["path"]??"");
+    ):"";
+    $values["abstract"] = $values["abstract"]?ToolsHelper::clean_str($values["abstract"]):"";
+    $values["metodology"] = $values["metodology"]?ToolsHelper::clean_str($values["metodology"]):"";
+    $values["conclusions"] = $values["conclusions"]?ToolsHelper::clean_str($values["conclusions"]):"";
+    $values["bibliography"] = $values["bibliography"]?serialize(
+      ToolsHelper::sanitize_strings_arr($values["bibliography"])
+    ):"";
+    $values["document"] = $values["document"]?ToolsHelper::clean_str($values["document"]):"";
+    $values["path"] = $values["path"]?ToolsHelper::clean_str($values["path"]):"";
+    return $values;
+  }
+
+  public function push_row($values) {
+    $values = $this->sanitize_values($values);
+    $sql = "INSERT INTO `paper`( `title`, `authors`, `labels`, `abstract`, `metodology`, `conclusions`, `bibliography`, `document`, `created`, `path`) VALUES(?, ?, ?, ?, ?, ?, ?, ?, NOW(), ?)";
+    list(
+      $title,
+      $authors,
+      $labels,
+      $abstract,
+      $metodology,
+      $conclusions,
+      $bibliography,
+      $document,
+      $path,
+    ) = $values;
+    $response = DBLayer::execute($sql, array($title,$authors,$labels,$abstract,$metodology,$conclusions,$bibliography,$document,$path));
+    // return $response;
   }
   public function get_authors() {
     return unserialize($this->authors);

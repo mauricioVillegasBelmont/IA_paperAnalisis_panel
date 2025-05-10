@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 10-05-2025 a las 01:58:57
+-- Tiempo de generación: 10-05-2025 a las 16:32:55
 -- Versión del servidor: 8.0.41-0ubuntu0.24.04.1
 -- Versión de PHP: 8.2.28
 
@@ -20,6 +20,20 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `miau_tools`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `document_pdf`
+--
+
+CREATE TABLE `document_pdf` (
+  `document_pdf_id` int NOT NULL,
+  `name` varchar(512) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `content` longtext CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `created` datetime NOT NULL,
+  `processed` tinyint NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
 
@@ -48,7 +62,7 @@ CREATE TABLE `paper` (
   `metodology` text NOT NULL,
   `conclusions` text NOT NULL,
   `bibliography` text CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
-  `document` mediumtext NOT NULL,
+  `document` longtext CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `path` varchar(256) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
@@ -102,15 +116,15 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
--- Volcado de datos para la tabla `user`
---
-
-INSERT INTO `user` (`user_id`, `name`, `lastname`, `user`, `email`, `pwd`, `salt`, `level`, `created`, `last_login`, `active`) VALUES
-(1, NULL, NULL, 'admin', NULL, 'f78707fa8c6113fee11fe09b39941df5fd6ae022e6214aaf70cbeb25647afccc', 0xc0363b272299065ba8d278910e87441f7f0ba5681193d36046c53ecc4fab88d1a0d868248e14e2f24654a4e7160e40160143c7b6010d1a037562169d83f6d314, 1, NULL, '2025-05-09 13:13:52', 1);
-
---
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `document_pdf`
+--
+ALTER TABLE `document_pdf`
+  ADD PRIMARY KEY (`document_pdf_id`),
+  ADD UNIQUE KEY `name` (`name`);
 
 --
 -- Indices de la tabla `label`
@@ -147,6 +161,12 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `document_pdf`
+--
+ALTER TABLE `document_pdf`
+  MODIFY `document_pdf_id` int NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `label`
 --
 ALTER TABLE `label`
@@ -174,7 +194,7 @@ ALTER TABLE `site_data`
 -- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `user_id` int NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

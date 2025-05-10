@@ -4,6 +4,7 @@
     <div class="row align-items-center">
       <h1 class="h5 col"><i class="fas fa-table me-1"></i>{title}</h1>
       <div class="ms-auto col text-end">
+        puto
         <!-- <a href="{action}/agregar" title="Agregar nuevo" class="btn btn-dark small"><i class="fa fa-edit"></i> {addnew}</a> -->
       </div>
     </div>
@@ -14,6 +15,8 @@
         <tr>
           <!--tdtitle-->
           <th class="th_border">{tdtitle}</th><!--tdtitle-->
+          <!--thprocesar-->
+          <th class="th_border">&nbsp;</th><!--thprocesar-->
           <!--thver-->
           <th class="th_border">&nbsp;</th><!--thver-->
           <!--theditar-->
@@ -27,6 +30,8 @@
         <tr>
           <!--tdvalue-->
           <td>{tdvalue}</td><!--tdvalue-->
+          <!--procesar-->
+          <td><a href="{action}/procesar_archivos/{id}" title="Ver/Descargar" class="btn btn-primary">procesar con ia<i class="fa fa-cog ms-2" aria-hidden="true"></i></a></td><!--procesar-->
           <!--ver-->
           <td><a href="{action}/ver/{id}" title="Ver/Descargar"><i class="fa fa-eye"></i></a></td><!--ver-->
           <!--editar-->
