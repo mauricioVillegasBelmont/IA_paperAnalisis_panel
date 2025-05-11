@@ -9,3 +9,7 @@
     overflow: scroll;
     padding: 10px;
 }
+table.dataTable.display th, table.dataTable.display td{
+    max-width: 52ch;
+    text-wrap: auto;
+}

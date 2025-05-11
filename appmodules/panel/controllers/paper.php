@@ -124,9 +124,11 @@ class PaperController extends Controller {
 	}
 	public function procesar_archivos($id){
 		$resJSON = $this->resJSON;
+		// $id = $_POST['id'];
 		try {
 			$document = new Document_pdf();
-			$document->get($id);
+			$document->document_pdf_id = (int)$id;
+			$document->get();
 			$this->process_file($document->content);
 			$document->processed = 1;
 			$document->save();
@@ -195,7 +197,7 @@ class PaperController extends Controller {
 	{
 		try {
 			
-			$queryMessage = 'Procesa el siguiente documento y devuelve un JSON estructurado como se indicó:\n' . $document;
+			$queryMessage = 'Procesa el siguiente documento y devuelve un JSON estructurado como se indicó con los contenidos en español:\n' . $document;
 			$config = array(
 				"IArole" => "Eres un asistente analítico. Procesarás los siguientes documentos, los traduciras al español y generarás un JSON con el suguiente schema: {title: '',authors: [''],labels: [''],abstract: '',metodology: '',conclusions: '',bibliography: ['']}. Debe ser especifico en los campos titulo, autores, etiquetas, y las referencias deven mantener formato APA actualizados. El JSON debe ser estructurado y no contener texto adicional ni campos diferentes a los mecionados. El JSON debe ser válido y no contener errores de sintaxis. El JSON debe ser legible y fácil de entender. El JSON debe ser breve, pero sin perder información importante. El JSON debe contener solo la información necesaria para describir el documento.",
 				"deepThink" => false,
