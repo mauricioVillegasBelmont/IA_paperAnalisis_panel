@@ -3,7 +3,8 @@
   <div class="row">
 
     <div class="col-12 col-lg-6 py-3">
-      <div class="card px--3 py-3 px-3">
+      <h1 class="h6">Files</h1>
+      <div class="card px--3 py-3 px-3 mb-3">
         <h1 class="h5">upload single file</h1>
         <form action="/panel/paper/registrar" method="post" enctype="multipart/form-data">
           <div class="mb-3">
@@ -13,11 +14,18 @@
           <button type="submit" class="btn btn-primary">Submit</button>
         </form>
       </div>
-    </div>
-    <div class="col-12 col-lg-6 py-3">
-      <div class="card px--3 py-3 px-3">
+      <div class="card px--3 py-3 px-3 mb-3">
         <h1 class="h5">enqueue from folder</h1>
         <form action="/panel/paper/equeue_files" method="post" enctype="multipart/form-data">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+    <div class="col-12 col-lg-6 py-3">
+      <h1 class="h6">Export</h1>
+      <div class="card px--3 py-3 px-3 mb-3">
+        <h1 class="h5">update Google sheet</h1>
+        <form action="/panel/paper/update_sheet" method="post" enctype="multipart/form-data">
           <button type="submit" class="btn btn-primary">Submit</button>
         </form>
       </div>

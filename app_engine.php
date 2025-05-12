@@ -67,7 +67,7 @@ import('core.dev_tools.lang_improvement.phpfunc2method');
 import('core.aliases');
 
 
-# import('common.composer.vendor.autoload');
+import('common.composer.vendor.autoload');
 # Importación de plugins
 $apps = isset($options['PLUGINS']) ? $options['PLUGINS'] : array();
 foreach($apps as $plugin=>$enabled) {

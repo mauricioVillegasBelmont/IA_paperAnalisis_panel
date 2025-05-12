@@ -110,10 +110,10 @@ class Paper  extends StandardObject {
   public function get_authors() {
     return unserialize($this->authors);
   }
-  public function get_label() {
+  public function get_documeny_labels() {
     return unserialize($this->labels);
   }
-  public function get_bibliography() {
+  public function get_document_bibliography() {
     return unserialize($this->bibliography);
   }
   public function get(){
@@ -125,7 +125,7 @@ class Paper  extends StandardObject {
   }
 
 
-  public function get_labels(){
+  public function get_all_labels(){
     $query = "SELECT `paper_id`, `labels` FROM `paper` WHERE `labels` != ''";
     $resp = DBLayer::execute($query, array());
     $response = array('labels'=>array());
@@ -134,10 +134,18 @@ class Paper  extends StandardObject {
       $response['labels'] = array_merge($response['labels'],unserialize($value['labels']));
     }
     $labels = array_unique($response['labels']);
-
-    
-    // return $resp;
-    return $response;
+    return $labels = array_unique($response['labels']);;
+  }
+  public function get_all_bibliography(){
+    $query = "SELECT `paper_id`, `bibliography` FROM `paper` WHERE `bibliography` != ''";
+    $resp = DBLayer::execute($query, array());
+    $response = array('bibliography'=>array());
+    foreach($resp as $key => $value){
+      // $response[$value['paper_id']] = unserialize($value['labels']);
+      $response['bibliography'] = array_merge($response['bibliography'],unserialize($value['bibliography']));
+    } 
+    // $bibliography = array_unique($response['bibliography']);
+    return array_unique($response['bibliography']);
   }
 
 }

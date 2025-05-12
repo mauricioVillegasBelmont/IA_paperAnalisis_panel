@@ -10,7 +10,7 @@
 
 /**
  * 
-  `reference_id` int(11) NOT NULL,
+  `bibliography_id` int(11) NOT NULL,
   `name` varchar(256) NOT NULL,
   `autors` VARCHAR(255),
   `type` ENUM('libro', 'articulo_revista', 'articulo_periodico', 'fuente_web', 'tesis', 'informe', 'capitulo_libro', 'ley', 'norma', 'otros') NOT NULL,
@@ -18,12 +18,12 @@
  * 
  */
 
-class reference extends StandardObject{
-  public $reference_id;
+class Bibliography extends StandardObject{
+  public $bibliography_id;
   public $name;
   public $autors;
   public $type;
-  public $created ;
+  public $created;
 
   public $valid_types = array(
     'libro',
@@ -39,19 +39,19 @@ class reference extends StandardObject{
   );
 
   public function __construct(){
-    $this->reference_id = 0;
+    $this->bibliography_id = 0;
     $this->name = '';
     $this->autors = '';
     $this->type = '';
     $this->created = '';
   }
   public function save(){
-    if ($this->reference_id != 0) return
+    if ($this->bibliography_id != 0) return
       $this->created = date("Y-m-d H:i:s", time());
     parent::save();
   }
   public function update(){
-    if ($this->reference_id == 0) return
+    if ($this->bibliography_id == 0) return
       parent::save();
   }
   public function set_values($values) {
@@ -64,10 +64,16 @@ class reference extends StandardObject{
     }
   }
 
-  public function get(){
-    parent::get();
-    $this->autors = unserialize($this->autors);
-    $this->created = date("Y-m-d H:i:s", strtotime($this->created));
-    return $this;
+  public function batch_bibliography($bibliography){
+    foreach ($bibliography as $biblio) {
+      $sql = "INSERT INTO bibliography (`name`, `created`)
+        SELECT * FROM (SELECT '{$biblio}' AS name, NOW() AS created) AS tmp
+        WHERE NOT EXISTS (
+          SELECT 1 FROM bibliography WHERE name = '{$biblio}'
+        ) LIMIT 1;";
+      DBLayer::execute($sql, array());
+    }
+    return;
+    
   }
 }

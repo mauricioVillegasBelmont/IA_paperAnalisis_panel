@@ -33,4 +33,18 @@ class FormFieldValidation
     }
     return $values;
   }
+
+
+  /**
+   * Verifica que el formulario sea válido
+   * @param array $fields
+   * @throws Exception
+   */
+  public static function is_complete_form($fields = array())
+  {
+    $verification = self::post_verification($fields);
+    if (in_array(false, $verification, true)) {
+      throw new Exception('Por favor, complete el formulario.');
+    };
+  }
 }

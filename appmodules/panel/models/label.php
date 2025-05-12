@@ -37,4 +37,25 @@ class Label  extends StandardObject{
   public function edit_values($values) {
     $this->name = ToolsHelper::clean_str($values["name"]);;
   }
+
+  public function sanitize_values($values){
+    $this->name = ToolsHelper::clean_str($values["name"]);
+    return $values;
+  }
+  public function set_values($values){
+    $values = $this->sanitize_values($values);
+    $this->name = $values["name"];
+  }
+  public function batch_labels($labels){
+    foreach ($labels as $label) {
+      $sql = "INSERT INTO label (`name`, `created`)
+        SELECT * FROM (SELECT '{$label}' AS name, NOW() AS created) AS tmp
+        WHERE NOT EXISTS (
+          SELECT 1 FROM label WHERE name = '{$label}'
+        ) LIMIT 1;";
+      DBLayer::execute($sql, array());
+    }
+
+    return;
+  }
 }

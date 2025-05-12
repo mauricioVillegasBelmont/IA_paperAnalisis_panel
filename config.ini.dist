@@ -30,7 +30,7 @@ DB_HOST = localhost  ; host o IP del servidor de base de datos
 DB_USER = root       ; usuario MySQL
 DB_PASS = secret     ; contraseña
 DB_NAME = europio    ; nombre de la base de datos de la app
-DB_CHARSET = utf8    ; juego de caracteres aplicable a la base de datos
+DB_CHARSET = utf8mb4    ; juego de caracteres aplicable a la base de datos
 
 
 [PATHS]
@@ -85,6 +85,7 @@ SECURITY_TRACK = true ; Para habilitar codigos de trackeo como UTM
 [PLUGINS]
 iaservices = true        ; common/plugins/iaservices
 python_helpers = true    ; common/plugins/python_helpers
+google_sheets = true    ; common/plugins/google_sheets
 collectortable = true ; common/plugins/collectortable
 collectorviewer = false ; common/plugins/collectorviewver
 securitylayer = true   ; common/plugins/securitylayer

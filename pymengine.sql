@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 10-05-2025 a las 16:32:55
+-- Tiempo de generación: 12-05-2025 a las 20:06:49
 -- Versión del servidor: 8.0.41-0ubuntu0.24.04.1
 -- Versión de PHP: 8.2.28
 
@@ -24,16 +24,43 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `bibliography`
+--
+
+CREATE TABLE `bibliography` (
+  `bibliography_id` int NOT NULL,
+  `name` varchar(256) NOT NULL,
+  `autors` varchar(255) DEFAULT NULL,
+  `type` enum('libro','articulo_revista','articulo_periodico','fuente_web','tesis','informe','capitulo_libro','ley','norma','otros') NOT NULL,
+  `created` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `document_pdf`
 --
 
 CREATE TABLE `document_pdf` (
   `document_pdf_id` int NOT NULL,
-  `name` varchar(512) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
-  `content` longtext CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `name` varchar(512) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `content` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created` datetime NOT NULL,
   `processed` tinyint NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `document_references`
+--
+
+CREATE TABLE `document_references` (
+  `document_references_id` int NOT NULL,
+  `document` int NOT NULL,
+  `apa` varchar(3000) NOT NULL,
+  `fecha` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -44,7 +71,7 @@ CREATE TABLE `document_pdf` (
 CREATE TABLE `label` (
   `label_id` int NOT NULL,
   `name` varchar(256) NOT NULL,
-  `created` datetime NOT NULL
+  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
@@ -55,31 +82,43 @@ CREATE TABLE `label` (
 
 CREATE TABLE `paper` (
   `paper_id` int NOT NULL,
-  `title` varchar(1024) NOT NULL,
-  `authors` text NOT NULL,
-  `labels` text NOT NULL,
-  `abstract` text NOT NULL,
-  `metodology` text NOT NULL,
-  `conclusions` text NOT NULL,
-  `bibliography` text CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
-  `document` longtext CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `title` varchar(1024) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `authors` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `labels` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `abstract` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `metodology` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `conclusions` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `bibliography` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `document` int NOT NULL,
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `path` varchar(256) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+  `path` varchar(256) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `reference`
+-- Estructura de tabla para la tabla `paper_to_bibliography`
 --
 
-CREATE TABLE `reference` (
-  `reference_id` int NOT NULL,
-  `name` varchar(256) NOT NULL,
-  `autors` varchar(255) DEFAULT NULL,
-  `type` enum('libro','articulo_revista','articulo_periodico','fuente_web','tesis','informe','capitulo_libro','ley','norma','otros') NOT NULL,
-  `created` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+CREATE TABLE `paper_to_bibliography` (
+  `paper_to_bibliography_id` int NOT NULL,
+  `paper` int NOT NULL,
+  `bibliography` int NOT NULL,
+  `document` tinyint NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `paper_to_label`
+--
+
+CREATE TABLE `paper_to_label` (
+  `paper_to_label_id` int NOT NULL,
+  `paper` int NOT NULL,
+  `label` int NOT NULL,
+  `document` tinyint NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -120,11 +159,23 @@ CREATE TABLE `user` (
 --
 
 --
+-- Indices de la tabla `bibliography`
+--
+ALTER TABLE `bibliography`
+  ADD PRIMARY KEY (`bibliography_id`);
+
+--
 -- Indices de la tabla `document_pdf`
 --
 ALTER TABLE `document_pdf`
   ADD PRIMARY KEY (`document_pdf_id`),
   ADD UNIQUE KEY `name` (`name`);
+
+--
+-- Indices de la tabla `document_references`
+--
+ALTER TABLE `document_references`
+  ADD PRIMARY KEY (`document_references_id`);
 
 --
 -- Indices de la tabla `label`
@@ -139,10 +190,16 @@ ALTER TABLE `paper`
   ADD PRIMARY KEY (`paper_id`);
 
 --
--- Indices de la tabla `reference`
+-- Indices de la tabla `paper_to_bibliography`
 --
-ALTER TABLE `reference`
-  ADD PRIMARY KEY (`reference_id`);
+ALTER TABLE `paper_to_bibliography`
+  ADD PRIMARY KEY (`paper_to_bibliography_id`);
+
+--
+-- Indices de la tabla `paper_to_label`
+--
+ALTER TABLE `paper_to_label`
+  ADD PRIMARY KEY (`paper_to_label_id`);
 
 --
 -- Indices de la tabla `site_data`
@@ -161,10 +218,22 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `bibliography`
+--
+ALTER TABLE `bibliography`
+  MODIFY `bibliography_id` int NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `document_pdf`
 --
 ALTER TABLE `document_pdf`
   MODIFY `document_pdf_id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `document_references`
+--
+ALTER TABLE `document_references`
+  MODIFY `document_references_id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `label`
@@ -179,10 +248,16 @@ ALTER TABLE `paper`
   MODIFY `paper_id` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `reference`
+-- AUTO_INCREMENT de la tabla `paper_to_bibliography`
 --
-ALTER TABLE `reference`
-  MODIFY `reference_id` int NOT NULL AUTO_INCREMENT;
+ALTER TABLE `paper_to_bibliography`
+  MODIFY `paper_to_bibliography_id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `paper_to_label`
+--
+ALTER TABLE `paper_to_label`
+  MODIFY `paper_to_label_id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `site_data`

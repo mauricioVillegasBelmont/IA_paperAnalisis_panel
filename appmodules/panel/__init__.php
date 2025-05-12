@@ -11,6 +11,7 @@ import('appmodules.panel.helpers.tools');
 import('appmodules.panel.helpers.menu');
 import('appmodules.panel.helpers.validation');
 import('appmodules.panel.helpers.template');
+import('appmodules.panel.helpers.razonador');
 // import('appmodules.panel.helpers.file_upload');
 // import('appmodules.panel.helpers.sendgrid');
 
@@ -35,7 +36,7 @@ import('appmodules.panel.models.document_pdf');
 import('appmodules.panel.views.document_pdf');
 
 /* reference */
-import('appmodules.panel.models.reference');
+import('appmodules.panel.models.bibliography');
 /* label */
 import('appmodules.panel.models.label');
 
